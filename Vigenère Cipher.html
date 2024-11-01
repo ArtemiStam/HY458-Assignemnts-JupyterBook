@@ -174,7 +174,6 @@
 <li class="toctree-l1"><a class="reference internal" href="Caesar%20Cipher.html">Caesar Cipher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="One-time%20pad.html">One-time pad</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Vigenère Cipher</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
 
@@ -222,6 +221,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -230,7 +260,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -247,7 +277,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FVigenère Cipher.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FVigenère Cipher.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -363,10 +393,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vigenère Cipher</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -379,9 +407,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="vigenere-cipher">
 <h1>Vigenère Cipher<a class="headerlink" href="#vigenere-cipher" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="classic-crypto">
-<h1>Classic Crypto<a class="headerlink" href="#classic-crypto" title="Link to this heading">#</a></h1>
+<section id="classic-crypto">
+<h2>Classic Crypto<a class="headerlink" href="#classic-crypto" title="Link to this heading">#</a></h2>
 <H2>Introduction</H2>
 <p>In this assignment you are going to implement from scratch, encryption, decryption and
 cryptanalysis algorithms using Python.
@@ -577,13 +604,14 @@ UNIMPLEMENTED-KASISKI
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "ArtemiStam/HY458-Assignemnts-JupyterBook",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -643,10 +671,8 @@ UNIMPLEMENTED-KASISKI
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vigenère Cipher</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

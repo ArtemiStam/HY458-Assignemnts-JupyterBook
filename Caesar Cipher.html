@@ -174,7 +174,6 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Caesar Cipher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="One-time%20pad.html">One-time pad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Vigen%C3%A8re%20Cipher.html">Vigenère Cipher</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
 
@@ -222,6 +221,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -230,7 +260,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -247,7 +277,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FCaesar Cipher.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FCaesar Cipher.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -428,7 +458,8 @@ perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: E
 </ul>
 </li>
 </ul>
-<h3>1.2: Cryptanalysis</h3>
+<h3>1.2: Cryptanalysis </h3>
+(cannot run cryptanalysis live on jupyterbook, you can run it locally and provide dictionary_1000.txt)
 <p>Create a function to decrypt various messages by exhaustively trying all keys until you see something that looks like English. Try automating this:</p>
 <ol class="arabic simple">
 <li><p>Create a program that takes in an encoded string, then try decoding it with all 25 shift values.</p></li>
@@ -500,48 +531,26 @@ perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: E
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-e&quot;</span><span class="p">,</span> <span class="s2">&quot;--encrypt&quot;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Encrypt text file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">))</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Encrypt text file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--decrypt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Decrypt ciphertext file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">))</span>
+        <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--decrypt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Decrypt ciphertext file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--shift&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shift value used for encryption/decryption&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--cryptanalysis&quot;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Perform cryptanalysis on the given ciphertext&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">))</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Perform cryptanalysis on the given ciphertext&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
 
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">encrypt</span><span class="p">:</span>
         <span class="n">shift</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">file_content</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">encrypt</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Binary files not supported, only text allowed&quot;</span><span class="p">,</span>
-                  <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">encrypted_text</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">file_content</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+        <span class="n">encrypted_text</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">encrypt</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ENCRYPTED TEXT:::::::::::&quot;</span><span class="o">+</span><span class="n">encrypted_text</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">decrypt</span><span class="p">:</span>
         <span class="n">shift</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">file_content</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">decrypt</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Binary files not supported, only text allowed&quot;</span><span class="p">,</span>
-                  <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">file_content</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+        <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">decrypt</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DECRYPTED TEXT:::::::::::&quot;</span><span class="o">+</span><span class="n">decrypted_text</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cryptanalysis</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">file_content</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">cryptanalysis</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Binary files not supported, only text allowed&quot;</span><span class="p">,</span>
-                  <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">cryptanalysis</span><span class="p">(</span><span class="n">file_content</span><span class="p">)</span>
+        <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">cryptanalysis</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">cryptanalysis</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CRYPTANALYSIS:::::::::::&quot;</span><span class="o">+</span><span class="n">decrypted_text</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -549,14 +558,12 @@ perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: E
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plaintext_path</span> <span class="o">=</span> <span class="s2">&quot;test_files/caesar/plaintext.txt&quot;</span>
-<span class="c1">#caesar_shift = &quot;test_files/caesar/caesar_encrypted_shift_is_14.txt&quot;</span>
-
-<span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;-e&quot;</span><span class="p">,</span> 
-            <span class="s2">&quot;test_files/caesar/plaintext.txt&quot;</span><span class="p">,</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> 
-            <span class="s2">&quot;test_files/caesar/caesar_encrypted_shift_is_14.txt&quot;</span><span class="p">,</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> 
-            <span class="s2">&quot;test_files/caesar/caesar_encrypted_shift_is_14.txt&quot;</span>
-            <span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!Cryptanalysis doesnt work on jupyter book because it needs to load the file dictionary_1000.txt but you can run it locally</span>
+<span class="c1">#by providing the dictionary_1000.txt found in the HY458 2022 assignment1 zip.</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;-e&quot;</span><span class="p">,</span>  <span class="s2">&quot;Cryptography prior to the modern age was effectively synonymous with encryption, converting readable information (plaintext) to unintelligible nonsense text (ciphertext), which can only be read by reversing the process (decryption). The sender of an encrypted (coded) message shares the decryption (decoding) technique only with intended recipients to preclude access from adversaries. The cryptography literature often uses the names </span><span class="se">\&quot;</span><span class="s2">Alice</span><span class="se">\&quot;</span><span class="s2"> (or </span><span class="se">\&quot;</span><span class="s2">A</span><span class="se">\&quot;</span><span class="s2">) for the sender, </span><span class="se">\&quot;</span><span class="s2">Bob</span><span class="se">\&quot;</span><span class="s2"> (or </span><span class="se">\&quot;</span><span class="s2">B</span><span class="se">\&quot;</span><span class="s2">) for the intended recipient, and </span><span class="se">\&quot;</span><span class="s2">Eve</span><span class="se">\&quot;</span><span class="s2"> (or </span><span class="se">\&quot;</span><span class="s2">E</span><span class="se">\&quot;</span><span class="s2">) for the eavesdropping adversary. Extensive open academic research into cryptography is relatively recent, beginning in the mid-1970s.&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;Qfmdhcufodvmdfwcfhchvsacrsfbouskogsttsqhwjszmgmbcbmacigkwhvsbqfmdhwcb,qcbjsfhwbufsoropzswbtcfaohwcb(dzowbhslh)hcibwbhszzwuwpzsbcbgsbgshslh(qwdvsfhslh),kvwqvqobcbzmpsfsorpmfsjsfgwbuhvsdfcqsgg(rsqfmdhwcb).Hvsgsbrsfctobsbqfmdhsr(qcrsr)asggousgvofsghvsrsqfmdhwcb(rsqcrwbu)hsqvbweiscbzmkwhvwbhsbrsrfsqwdwsbhghcdfsqzirsoqqsggtfcaorjsfgofwsg.Hvsqfmdhcufodvmzwhsfohifscthsbigsghvsboasg</span><span class="se">\&quot;</span><span class="s2">Ozwqs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">O</span><span class="se">\&quot;</span><span class="s2">)tcfhvsgsbrsf,</span><span class="se">\&quot;</span><span class="s2">Pcp</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">P</span><span class="se">\&quot;</span><span class="s2">)tcfhvswbhsbrsrfsqwdwsbh,obr</span><span class="se">\&quot;</span><span class="s2">Sjs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">S</span><span class="se">\&quot;</span><span class="s2">)tcfhvssojsgrfcddwbuorjsfgofm.Slhsbgwjscdsboqorsawqfsgsofqvwbhcqfmdhcufodvmwgfszohwjszmfsqsbh,psuwbbwbuwbhvsawr-1970g.&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;Qfmdhcufodvmdfwcfhchvsacrsfbouskogsttsqhwjszmgmbcbmacigkwhvsbqfmdhwcb,qcbjsfhwbufsoropzswbtcfaohwcb(dzowbhslh)hcibwbhszzwuwpzsbcbgsbgshslh(qwdvsfhslh),kvwqvqobcbzmpsfsorpmfsjsfgwbuhvsdfcqsgg(rsqfmdhwcb).Hvsgsbrsfctobsbqfmdhsr(qcrsr)asggousgvofsghvsrsqfmdhwcb(rsqcrwbu)hsqvbweiscbzmkwhvwbhsbrsrfsqwdwsbhghcdfsqzirsoqqsggtfcaorjsfgofwsg.Hvsqfmdhcufodvmzwhsfohifscthsbigsghvsboasg</span><span class="se">\&quot;</span><span class="s2">Ozwqs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">O</span><span class="se">\&quot;</span><span class="s2">)tcfhvsgsbrsf,</span><span class="se">\&quot;</span><span class="s2">Pcp</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">P</span><span class="se">\&quot;</span><span class="s2">)tcfhvswbhsbrsrfsqwdwsbh,obr</span><span class="se">\&quot;</span><span class="s2">Sjs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">S</span><span class="se">\&quot;</span><span class="s2">)tcfhvssojsgrfcddwbuorjsfgofm.Slhsbgwjscdsboqorsawqfsgsofqvwbhcqfmdhcufodvmwgfszohwjszmfsqsbh,psuwbbwbuwbhvsawr-1970g.&quot;</span><span class="p">]</span>
 
 
 <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
@@ -578,8 +585,8 @@ CRYPTANALYSIS:::::::::::Cryptographypriortothemodernagewaseffectivelysynonymousw
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "ArtemiStam/HY458-Assignemnts-JupyterBook",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",
