@@ -468,124 +468,136 @@ import sys
 import argparse
 import secrets</p>
 <p>WARNING: The code bellow is in comments because it needs file input to run which is not available with jupyter-book</p>
-<p>def otp_xor(plain: bytes, key: bytes):
-res = b””</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>assert (len(plain) &lt;= len(key))
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def otp_xor(plain: bytes, key: bytes):
+    res = b&quot;&quot;
 
-for p, k in zip(plain, key):
-    if p &lt; 128:
-        res += bytes([p ^ k])
-    else:
-        res += bytes([p])
+    assert (len(plain) &lt;= len(key))
 
-return res
-</pre></div>
-</div>
-<p>def encrypt(plain: bytes, key: bytes):
-# Wrapper just for the naming
-return otp_xor(plain, key)</p>
-<p>def decrypt(plain: bytes, key: bytes):
-# Wrapper just for the naming
-return otp_xor(plain, key)</p>
-<p>def cryptanalysis(ciphertexts: list[bytes], target: bytes):
-key = bytearray([c ^ ord(‘*’) for c in target])</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>for cipher1 in ciphertexts:
-    count = {}
-    for cipher2 in ciphertexts:
-        if not (cipher1 is cipher2):
-            for x_i, chars in enumerate(zip(cipher1, cipher2)):
-                if chr(chars[0] ^ chars[1]) in string.ascii_letters:
-                    count[x_i] = count.get(x_i, 0)+1
-
-    for x_i, c in count.items():
-        if c/len(ciphertexts) &gt;= 0.75:
-            key[x_i] = cipher1[x_i] ^ ord(&#39; &#39;)
-
-return bytes([t ^ k for t, k in zip(target, key)])
-
-# Perhaps use a dictionary to improve the results of the attack
-</pre></div>
-</div>
-<p>def main(arguments):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>parser = argparse.ArgumentParser(
-    formatter_class=argparse.RawDescriptionHelpFormatter)
-parser.add_argument(&quot;-e&quot;, &quot;--encrypt&quot;,
-                    help=&quot;Encrypt text file&quot;, type=argparse.FileType(&#39;rb&#39;))
-parser.add_argument(
-    &quot;-d&quot;, &quot;--decrypt&quot;, help=&quot;Decrypt ciphertext file&quot;, type=argparse.FileType(&#39;rb&#39;))
-parser.add_argument(
-    &quot;-p&quot;, &quot;--otp&quot;, help=&quot;One-time pad used for encryption/decryption&quot;, type=argparse.FileType(&#39;rb&#39;))
-parser.add_argument(&quot;-c&quot;, &quot;--cryptanalysis&quot;, nargs=&quot;+&quot;,
-                    help=&quot;Perform cryptanalysis on the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))
-parser.add_argument(
-    &quot;-t&quot;, &quot;--target&quot;, help=&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))
-
-parser.add_argument(
-    &quot;-o&quot;, &quot;--output&quot;, help=&quot;The file where the result of the encryption/decryption will be written&quot;, type=argparse.FileType(&#39;wb&#39;))
-
-args = parser.parse_args(arguments)
-
-if args.encrypt:
-    file_content: bytes = args.encrypt.read()
-    if args.otp:
-        otp: bytes = args.otp.read()
-        if len(file_content) &gt; len(otp):
-            print(&quot;The key must be at least as long as the plaintext&quot;)
-            exit(1)
-    else:
-        otp = bytes([secrets.randbelow(128)
-                     for _ in range(len(file_content))])
-        print(
-            f&quot;No key selected. Auto-generated key: {otp}&quot;, file=sys.stderr)
-    # Replace this comment and the following statement with your code
-    encrypted_text = encrypt(file_content, otp)
-    if args.output:
-        args.output.write(encrypted_text)
-    else:
-        print(
-            &quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable\n&quot;, file=sys.stderr)
-
-        print(encrypted_text.decode())
-if args.decrypt:
-    if args.otp:
-        otp: bytes = args.otp.read()
-        file_content: bytes = args.decrypt.read()
-        # Replace this comment and the following statement with your code
-
-        if len(file_content) &gt; len(otp):
-            print(&quot;The key must be at least as long as the plaintext&quot;)
-            exit(1)
-
-        decrypted_text = decrypt(file_content, otp)
-        print(decrypted_text.decode())
-    else:
-        parser.error(&quot;-d/--decrypt requires -p/--otp&quot;)
-if args.cryptanalysis:
-    if args.target:
-        amount_of_ciphertexts = len(args.cryptanalysis)
-        ciphertexts = []
-        target_cipher_text = args.target.read()
-        for i in range(amount_of_ciphertexts):
-            ciphertexts.append(args.cryptanalysis[i].read())
-        # Replace this comment and the following statement with your code
-        decrypted_text = cryptanalysis(ciphertexts, target_cipher_text)
-        if args.output:
-            args.output.write(decrypted_text)
+    for p, k in zip(plain, key):
+        if p &lt; 128:
+            res += bytes([p ^ k])
         else:
+            res += bytes([p])
+
+    return res
+
+
+def encrypt(plain: bytes, key: bytes):
+    # Wrapper just for the naming
+    return otp_xor(plain, key)
+
+
+def decrypt(plain: bytes, key: bytes):
+    # Wrapper just for the naming
+    return otp_xor(plain, key)
+
+
+def cryptanalysis(ciphertexts: list[bytes], target: bytes):
+    key = bytearray([c ^ ord(&#39;*&#39;) for c in target])
+
+    for cipher1 in ciphertexts:
+        count = {}
+        for cipher2 in ciphertexts:
+            if not (cipher1 is cipher2):
+                for x_i, chars in enumerate(zip(cipher1, cipher2)):
+                    if chr(chars[0] ^ chars[1]) in string.ascii_letters:
+                        count[x_i] = count.get(x_i, 0)+1
+
+        for x_i, c in count.items():
+            if c/len(ciphertexts) &gt;= 0.75:
+                key[x_i] = cipher1[x_i] ^ ord(&#39; &#39;)
+
+    return bytes([t ^ k for t, k in zip(target, key)])
+
+    # Perhaps use a dictionary to improve the results of the attack
+
+
+def main(arguments):
+
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument(&quot;-e&quot;, &quot;--encrypt&quot;,
+                    help=&quot;Encrypt text file&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(
+        &quot;-d&quot;, &quot;--decrypt&quot;, help=&quot;Decrypt ciphertext file&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(
+        &quot;-p&quot;, &quot;--otp&quot;, help=&quot;One-time pad used for encryption/decryption&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(&quot;-c&quot;, &quot;--cryptanalysis&quot;, nargs=&quot;+&quot;,
+                        help=&quot;Perform cryptanalysis on the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(
+        &quot;-t&quot;, &quot;--target&quot;, help=&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))
+
+    parser.add_argument(
+        &quot;-o&quot;, &quot;--output&quot;, help=&quot;The file where the result of the encryption/decryption will be written&quot;, type=argparse.FileType(&#39;wb&#39;))
+
+    args = parser.parse_args(arguments)
+
+    if args.encrypt:
+        file_content: bytes = args.encrypt.read()
+        if args.otp:
+            otp: bytes = args.otp.read()
+            if len(file_content) &gt; len(otp):
+                print(&quot;The key must be at least as long as the plaintext&quot;)
+                exit(1)
+        else:
+            otp = bytes([secrets.randbelow(128)
+                         for _ in range(len(file_content))])
+            print(
+                f&quot;No key selected. Auto-generated key: {otp}&quot;, file=sys.stderr)
+        # Replace this comment and the following statement with your code
+        encrypted_text = encrypt(file_content, otp)
+        if args.output:
+            args.output.write(encrypted_text)
+        else:
+            print(
+                &quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable\n&quot;, file=sys.stderr)
+
+            print(encrypted_text.decode())
+        if args.decrypt:
+        if args.otp:
+            otp: bytes = args.otp.read()
+            file_content: bytes = args.decrypt.read()
+            # Replace this comment and the following statement with your code
+
+            if len(file_content) &gt; len(otp):
+                print(&quot;The key must be at least as long as the plaintext&quot;)
+                exit(1)
+
+            decrypted_text = decrypt(file_content, otp)
             print(decrypted_text.decode())
-    else:
-        parser.error(&quot;-c/--cryptanalysis requires -t/--target&quot;)
+        else:
+            parser.error(&quot;-d/--decrypt requires -p/--otp&quot;)
+    if args.cryptanalysis:
+        if args.target:
+            amount_of_ciphertexts = len(args.cryptanalysis)
+            ciphertexts = []
+            target_cipher_text = args.target.read()
+            for i in range(amount_of_ciphertexts):
+                ciphertexts.append(args.cryptanalysis[i].read())
+            # Replace this comment and the following statement with your code
+            decrypted_text = cryptanalysis(ciphertexts, target_cipher_text)
+            if args.output:
+                args.output.write(decrypted_text)
+            else:
+                print(decrypted_text.decode())
+        else:
+            parser.error(&quot;-c/--cryptanalysis requires -t/--target&quot;)
 </pre></div>
 </div>
-<p>plaintext_path = “test_files/otp/target_plaintext.txt”</p>
-<p>sys.argv = [“”,
-“-e”, “test_files/otp/target_plaintext.txt”,
-“-d”, “test_files/otp/target.txt”,
-“-p”,”test_files/otp/otp.txt”,
-“-c”, “test_files/otp/c0.txt”,
-“-t”, “test_files/otp/target.txt”
-]</p>
-<p>main(sys.argv[1:])</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plaintext_path = &quot;test_files/otp/target_plaintext.txt&quot;
+
+sys.argv = [&quot;&quot;,
+        &quot;-e&quot;, &quot;test_files/otp/target_plaintext.txt&quot;,
+        &quot;-d&quot;, &quot;test_files/otp/target.txt&quot;, 
+        &quot;-p&quot;,&quot;test_files/otp/otp.txt&quot;,
+        &quot;-c&quot;, &quot;test_files/otp/c0.txt&quot;, 
+        &quot;-t&quot;, &quot;test_files/otp/target.txt&quot; 
+        ]
+
+
+main(sys.argv[1:])
+</pre></div>
+</div>
 </section>
 </section>
 
