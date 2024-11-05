@@ -12,7 +12,7 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 def main(argv):
-    if len(argv) != 2: #if input is incorrect exit
+    if len(argv) != 1: #if input is incorrect exit
         print("\033[91m input should be: python polybius_square.py <plaintext> \033[00m")
         sys.exit(0)
 
