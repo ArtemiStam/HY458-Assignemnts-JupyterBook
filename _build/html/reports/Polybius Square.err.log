@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/artemi/.local/lib/python3.10/site-packages/myst_nb/core/execute/inline.py", line 128, in code_cell_outputs
+    self._client.execute_cell(
+  File "/home/artemi/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/artemi/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/artemi/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def main(argv):
+    if len(argv) != 2: #if input is incorrect exit
+        print("\033[91m input should be: python polybius_square.py <plaintext> \033[00m")
+        sys.exit(0)
+
+    plaintext = argv[0]
+    print("\n-------------------------Polybius Square encryption / decryption-------------------------")
+    print("Plaintext: "+plaintext)
+    plaintext = list(argv[0].upper().replace(" ", ""))
+
+    array = generate_array() #create an array with each letter of the alphabet in a random position
+    print("\nPolybius Square:")
+    print("    1    2    3    4    5")
+    for index, row in enumerate(array):
+        print(str(index+1), row)
+
+    ciphertext = encrypt(plaintext, array) #encrypt plaintext
+    print("\nCiphertext: "+ ciphertext)
+
+    plaintext = decrypt(ciphertext, array) #decrypt ciphertext
+    print("\nPlaintext: " + plaintext)
+
+if __name__ == "__main__":
+    main(sys.argv[1:]) #excecute main when file runs as a script, only get plaintext input
+------------------
+
+----- stdout -----
+[91m input should be: python polybius_square.py <plaintext> [00m
+----- stderr -----
+/home/artemi/.local/lib/python3.10/site-packages/IPython/core/interactiveshell.py:3585: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
+------------------
+
+An exception has occurred, use %tb to see the full traceback.
+
+[0;31mSystemExit[0m[0;31m:[0m 0
+
+

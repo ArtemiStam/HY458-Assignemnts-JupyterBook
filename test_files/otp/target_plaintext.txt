@@ -1,0 +1,1 @@
+In cryptography, the one-time pad OTP is an encryption technique that cannot be cracked, but requires the use of a single use key that isn't smaller than the message

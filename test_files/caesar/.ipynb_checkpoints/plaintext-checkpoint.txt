@@ -1,0 +1,9 @@
+Cryptography prior to the modern age was effectively synonymous with encryption, 
+converting readable information (plaintext) to unintelligible nonsense text 
+(ciphertext), which can only be read by reversing the process (decryption). 
+The sender of an encrypted (coded) message shares the decryption (decoding) 
+technique only with intended recipients to preclude access from adversaries. 
+The cryptography literature often uses the names "Alice" (or "A") for the 
+sender, "Bob" (or "B") for the intended recipient, and "Eve" (or "E") for the 
+eavesdropping adversary. Extensive open academic research into cryptography is 
+relatively recent, beginning in the mid-1970s.
