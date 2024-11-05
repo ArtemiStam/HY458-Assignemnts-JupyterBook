@@ -164,17 +164,16 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to HY458 Assignments book
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Caesar%20Cipher.html">Caesar Cipher</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">One-time pad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Vigen%C3%A8re%20Cipher.html">Vigenère Cipher</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Reverse%20Columnar%20Transposition.html">Reverse Columnar Transposition Cipher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Polybius%20Square.html">Polybius Square(variant)</a></li>
 </ul>
 
     </div>
@@ -474,180 +473,152 @@ with the asterisk symbol (*)<div class="cell docutils container">
 </div>
 </div>
 </div>
+<p>WARNING: The code bellow is in comments because it needs file input to run which is not available with jupyter-book</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">otp_xor</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;def otp_xor(plain: bytes, key: bytes):</span>
+<span class="sd">    res = b&quot;&quot;</span>
 
-    <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+<span class="sd">    assert (len(plain) &lt;= len(key))</span>
 
-    <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">128</span><span class="p">:</span>
-            <span class="n">res</span> <span class="o">+=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">p</span> <span class="o">^</span> <span class="n">k</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">res</span> <span class="o">+=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">p</span><span class="p">])</span>
+<span class="sd">    for p, k in zip(plain, key):</span>
+<span class="sd">        if p &lt; 128:</span>
+<span class="sd">            res += bytes([p ^ k])</span>
+<span class="sd">        else:</span>
+<span class="sd">            res += bytes([p])</span>
 
-    <span class="k">return</span> <span class="n">res</span>
-
-
-<span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
-    <span class="c1"># Wrapper just for the naming</span>
-    <span class="k">return</span> <span class="n">otp_xor</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="sd">    return res</span>
 
 
-<span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
-    <span class="c1"># Wrapper just for the naming</span>
-    <span class="k">return</span> <span class="n">otp_xor</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="sd">def encrypt(plain: bytes, key: bytes):</span>
+<span class="sd">    # Wrapper just for the naming</span>
+<span class="sd">    return otp_xor(plain, key)</span>
 
 
-<span class="k">def</span> <span class="nf">cryptanalysis</span><span class="p">(</span><span class="n">ciphertexts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">([</span><span class="n">c</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">target</span><span class="p">])</span>
-
-    <span class="k">for</span> <span class="n">cipher1</span> <span class="ow">in</span> <span class="n">ciphertexts</span><span class="p">:</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">cipher2</span> <span class="ow">in</span> <span class="n">ciphertexts</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">cipher1</span> <span class="ow">is</span> <span class="n">cipher2</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">chars</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cipher1</span><span class="p">,</span> <span class="n">cipher2</span><span class="p">)):</span>
-                    <span class="k">if</span> <span class="nb">chr</span><span class="p">(</span><span class="n">chars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="n">chars</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span><span class="p">:</span>
-                        <span class="n">count</span><span class="p">[</span><span class="n">x_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
-
-        <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">count</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">c</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">ciphertexts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.75</span><span class="p">:</span>
-                <span class="n">key</span><span class="p">[</span><span class="n">x_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher1</span><span class="p">[</span><span class="n">x_i</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">t</span> <span class="o">^</span> <span class="n">k</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">key</span><span class="p">)])</span>
-
-    <span class="c1"># Perhaps use a dictionary to improve the results of the attack</span>
+<span class="sd">def decrypt(plain: bytes, key: bytes):</span>
+<span class="sd">    # Wrapper just for the naming</span>
+<span class="sd">    return otp_xor(plain, key)</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">):</span>
+<span class="sd">def cryptanalysis(ciphertexts: list[bytes], target: bytes):</span>
+<span class="sd">    key = bytearray([c ^ ord(&#39;*&#39;) for c in target])</span>
 
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-e&quot;</span><span class="p">,</span> <span class="s2">&quot;--encrypt&quot;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Encrypt text file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--decrypt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Decrypt ciphertext file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;--otp&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;One-time pad used for encryption/decryption&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--cryptanalysis&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Perform cryptanalysis on the given ciphertexts&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="s2">&quot;--target&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<span class="sd">    for cipher1 in ciphertexts:</span>
+<span class="sd">        count = {}</span>
+<span class="sd">        for cipher2 in ciphertexts:</span>
+<span class="sd">            if not (cipher1 is cipher2):</span>
+<span class="sd">                for x_i, chars in enumerate(zip(cipher1, cipher2)):</span>
+<span class="sd">                    if chr(chars[0] ^ chars[1]) in string.ascii_letters:</span>
+<span class="sd">                        count[x_i] = count.get(x_i, 0)+1</span>
 
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The file where the result of the encryption/decryption will be written&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+<span class="sd">        for x_i, c in count.items():</span>
+<span class="sd">            if c/len(ciphertexts) &gt;= 0.75:</span>
+<span class="sd">                key[x_i] = cipher1[x_i] ^ ord(&#39; &#39;)</span>
 
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+<span class="sd">    return bytes([t ^ k for t, k in zip(target, key)])</span>
 
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">encrypt</span><span class="p">:</span>
-        <span class="n">file_content</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">encrypt</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">otp</span><span class="p">:</span>
-            <span class="n">otp</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">otp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">otp</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The key must be at least as long as the plaintext&quot;</span><span class="p">)</span>
-                <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">otp</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">secrets</span><span class="o">.</span><span class="n">randbelow</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
-                         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">file_content</span><span class="p">))])</span>
-            <span class="nb">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;No key selected. Auto-generated key: </span><span class="si">{</span><span class="n">otp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-        <span class="c1"># Replace this comment and the following statement with your code</span>
-        <span class="n">encrypted_text</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">file_content</span><span class="p">,</span> <span class="n">otp</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
-            <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">encrypted_text</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span>
-                <span class="s2">&quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="n">encrypted_text</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">decrypt</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">otp</span><span class="p">:</span>
-            <span class="n">otp</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">otp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-            <span class="n">file_content</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">decrypt</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-            <span class="c1"># Replace this comment and the following statement with your code</span>
-
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">otp</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The key must be at least as long as the plaintext&quot;</span><span class="p">)</span>
-                <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-            <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">file_content</span><span class="p">,</span> <span class="n">otp</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">decrypted_text</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;-d/--decrypt requires -p/--otp&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">cryptanalysis</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
-            <span class="n">amount_of_ciphertexts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">cryptanalysis</span><span class="p">)</span>
-            <span class="n">ciphertexts</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">target_cipher_text</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">amount_of_ciphertexts</span><span class="p">):</span>
-                <span class="n">ciphertexts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">cryptanalysis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-            <span class="c1"># Replace this comment and the following statement with your code</span>
-            <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">cryptanalysis</span><span class="p">(</span><span class="n">ciphertexts</span><span class="p">,</span> <span class="n">target_cipher_text</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
-                <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decrypted_text</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">decrypted_text</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;-c/--cryptanalysis requires -t/--target&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    
-<span class="n">plaintext_path</span> <span class="o">=</span> <span class="s2">&quot;test_files/otp/target_plaintext.txt&quot;</span>
-
-<span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;-e&quot;</span><span class="p">,</span> 
-            <span class="s2">&quot;test_files/otp/target_plaintext.txt&quot;</span><span class="p">,</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> 
-            <span class="s2">&quot;test_files/otp/target.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">,</span><span class="s2">&quot;test_files/otp/otp.txt&quot;</span> 
-            <span class="p">,</span> <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;test_files/otp/c0.txt&quot;</span> <span class="p">,</span> <span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="s2">&quot;test_files/otp/target.txt&quot;</span> 
-            <span class="p">]</span>
+<span class="sd">    # Perhaps use a dictionary to improve the results of the attack</span>
 
 
-<span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="sd">def main(arguments):</span>
+
+<span class="sd">    parser = argparse.ArgumentParser(</span>
+<span class="sd">        formatter_class=argparse.RawDescriptionHelpFormatter)</span>
+<span class="sd">    parser.add_argument(&quot;-e&quot;, &quot;--encrypt&quot;,</span>
+<span class="sd">                        help=&quot;Encrypt text file&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
+<span class="sd">    parser.add_argument(</span>
+<span class="sd">        &quot;-d&quot;, &quot;--decrypt&quot;, help=&quot;Decrypt ciphertext file&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
+<span class="sd">    parser.add_argument(</span>
+<span class="sd">        &quot;-p&quot;, &quot;--otp&quot;, help=&quot;One-time pad used for encryption/decryption&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
+<span class="sd">    parser.add_argument(&quot;-c&quot;, &quot;--cryptanalysis&quot;, nargs=&quot;+&quot;,</span>
+<span class="sd">                        help=&quot;Perform cryptanalysis on the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
+<span class="sd">    parser.add_argument(</span>
+<span class="sd">        &quot;-t&quot;, &quot;--target&quot;, help=&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
+
+<span class="sd">    parser.add_argument(</span>
+<span class="sd">        &quot;-o&quot;, &quot;--output&quot;, help=&quot;The file where the result of the encryption/decryption will be written&quot;, type=argparse.FileType(&#39;wb&#39;))</span>
+
+<span class="sd">    args = parser.parse_args(arguments)</span>
+
+<span class="sd">    if args.encrypt:</span>
+<span class="sd">        file_content: bytes = args.encrypt.read()</span>
+<span class="sd">        if args.otp:</span>
+<span class="sd">            otp: bytes = args.otp.read()</span>
+<span class="sd">            if len(file_content) &gt; len(otp):</span>
+<span class="sd">                print(&quot;The key must be at least as long as the plaintext&quot;)</span>
+<span class="sd">                exit(1)</span>
+<span class="sd">        else:</span>
+<span class="sd">            otp = bytes([secrets.randbelow(128)</span>
+<span class="sd">                         for _ in range(len(file_content))])</span>
+<span class="sd">            print(</span>
+<span class="sd">                f&quot;No key selected. Auto-generated key: {otp}&quot;, file=sys.stderr)</span>
+<span class="sd">        # Replace this comment and the following statement with your code</span>
+<span class="sd">        encrypted_text = encrypt(file_content, otp)</span>
+<span class="sd">        if args.output:</span>
+<span class="sd">            args.output.write(encrypted_text)</span>
+<span class="sd">        else:</span>
+<span class="sd">            print(</span>
+<span class="sd">                &quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable\n&quot;, file=sys.stderr)</span>
+
+<span class="sd">            print(encrypted_text.decode())</span>
+<span class="sd">    if args.decrypt:</span>
+<span class="sd">        if args.otp:</span>
+<span class="sd">            otp: bytes = args.otp.read()</span>
+<span class="sd">            file_content: bytes = args.decrypt.read()</span>
+<span class="sd">            # Replace this comment and the following statement with your code</span>
+
+<span class="sd">            if len(file_content) &gt; len(otp):</span>
+<span class="sd">                print(&quot;The key must be at least as long as the plaintext&quot;)</span>
+<span class="sd">                exit(1)</span>
+
+<span class="sd">            decrypted_text = decrypt(file_content, otp)</span>
+<span class="sd">            print(decrypted_text.decode())</span>
+<span class="sd">        else:</span>
+<span class="sd">            parser.error(&quot;-d/--decrypt requires -p/--otp&quot;)</span>
+<span class="sd">    if args.cryptanalysis:</span>
+<span class="sd">        if args.target:</span>
+<span class="sd">            amount_of_ciphertexts = len(args.cryptanalysis)</span>
+<span class="sd">            ciphertexts = []</span>
+<span class="sd">            target_cipher_text = args.target.read()</span>
+<span class="sd">            for i in range(amount_of_ciphertexts):</span>
+<span class="sd">                ciphertexts.append(args.cryptanalysis[i].read())</span>
+<span class="sd">            # Replace this comment and the following statement with your code</span>
+<span class="sd">            decrypted_text = cryptanalysis(ciphertexts, target_cipher_text)</span>
+<span class="sd">            if args.output:</span>
+<span class="sd">                args.output.write(decrypted_text)</span>
+<span class="sd">            else:</span>
+<span class="sd">                print(decrypted_text.decode())</span>
+<span class="sd">        else:</span>
+<span class="sd">            parser.error(&quot;-c/--cryptanalysis requires -t/--target&quot;)&#39;&#39;&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<pre class="output stream literal-block">u|i(;&gt;#{?zI~&gt;gxhLK-FZ\Dc^LO/{IhD[Cd?m4O{:eF2cm&#64;&quot;:Sk^{!n$8Y^&amp;,hob1n-ZGkKi5Jox|Q5V!kGX5$kk-[r~8%uIzc&gt;iDe7H))4x$cE&amp;C8G&#64;q!JKu_-nl
-The key must be at least as long as the plaintext
-</pre>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;def otp_xor(plain: bytes, key: bytes):\n    res = b&quot;&quot;\n\n    assert (len(plain) &lt;= len(key))\n\n    for p, k in zip(plain, key):\n        if p &lt; 128:\n            res += bytes([p ^ k])\n        else:\n            res += bytes([p])\n\n    return res\n\n\ndef encrypt(plain: bytes, key: bytes):\n    # Wrapper just for the naming\n    return otp_xor(plain, key)\n\n\ndef decrypt(plain: bytes, key: bytes):\n    # Wrapper just for the naming\n    return otp_xor(plain, key)\n\n\ndef cryptanalysis(ciphertexts: list[bytes], target: bytes):\n    key = bytearray([c ^ ord(\&#39;*\&#39;) for c in target])\n\n    for cipher1 in ciphertexts:\n        count = {}\n        for cipher2 in ciphertexts:\n            if not (cipher1 is cipher2):\n                for x_i, chars in enumerate(zip(cipher1, cipher2)):\n                    if chr(chars[0] ^ chars[1]) in string.ascii_letters:\n                        count[x_i] = count.get(x_i, 0)+1\n\n        for x_i, c in count.items():\n            if c/len(ciphertexts) &gt;= 0.75:\n                key[x_i] = cipher1[x_i] ^ ord(\&#39; \&#39;)\n\n    return bytes([t ^ k for t, k in zip(target, key)])\n\n    # Perhaps use a dictionary to improve the results of the attack\n\n\ndef main(arguments):\n\n    parser = argparse.ArgumentParser(\n        formatter_class=argparse.RawDescriptionHelpFormatter)\n    parser.add_argument(&quot;-e&quot;, &quot;--encrypt&quot;,\n                        help=&quot;Encrypt text file&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(\n        &quot;-d&quot;, &quot;--decrypt&quot;, help=&quot;Decrypt ciphertext file&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(\n        &quot;-p&quot;, &quot;--otp&quot;, help=&quot;One-time pad used for encryption/decryption&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(&quot;-c&quot;, &quot;--cryptanalysis&quot;, nargs=&quot;+&quot;,\n                        help=&quot;Perform cryptanalysis on the given ciphertexts&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(\n        &quot;-t&quot;, &quot;--target&quot;, help=&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n\n    parser.add_argument(\n        &quot;-o&quot;, &quot;--output&quot;, help=&quot;The file where the result of the encryption/decryption will be written&quot;, type=argparse.FileType(\&#39;wb\&#39;))\n\n    args = parser.parse_args(arguments)\n\n    if args.encrypt:\n        file_content: bytes = args.encrypt.read()\n        if args.otp:\n            otp: bytes = args.otp.read()\n            if len(file_content) &gt; len(otp):\n                print(&quot;The key must be at least as long as the plaintext&quot;)\n                exit(1)\n        else:\n            otp = bytes([secrets.randbelow(128)\n                         for _ in range(len(file_content))])\n            print(\n                f&quot;No key selected. Auto-generated key: {otp}&quot;, file=sys.stderr)\n        # Replace this comment and the following statement with your code\n        encrypted_text = encrypt(file_content, otp)\n        if args.output:\n            args.output.write(encrypted_text)\n        else:\n            print(\n                &quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable\n&quot;, file=sys.stderr)\n\n            print(encrypted_text.decode())\n    if args.decrypt:\n        if args.otp:\n            otp: bytes = args.otp.read()\n            file_content: bytes = args.decrypt.read()\n            # Replace this comment and the following statement with your code\n\n            if len(file_content) &gt; len(otp):\n                print(&quot;The key must be at least as long as the plaintext&quot;)\n                exit(1)\n\n            decrypted_text = decrypt(file_content, otp)\n            print(decrypted_text.decode())\n        else:\n            parser.error(&quot;-d/--decrypt requires -p/--otp&quot;)\n    if args.cryptanalysis:\n        if args.target:\n            amount_of_ciphertexts = len(args.cryptanalysis)\n            ciphertexts = []\n            target_cipher_text = args.target.read()\n            for i in range(amount_of_ciphertexts):\n                ciphertexts.append(args.cryptanalysis[i].read())\n            # Replace this comment and the following statement with your code\n            decrypted_text = cryptanalysis(ciphertexts, target_cipher_text)\n            if args.output:\n                args.output.write(decrypted_text)\n            else:\n                print(decrypted_text.decode())\n        else:\n            parser.error(&quot;-c/--cryptanalysis requires -t/--target&quot;)&#39;
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plaintext_path</span> <span class="o">=</span> <span class="s2">&quot;test_files/otp/target_plaintext.txt&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;-e&quot;</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span>             <span class="s2">&quot;test_files/otp/target_plaintext.txt&quot;</span><span class="p">,</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span>             <span class="s2">&quot;test_files/otp/target.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">,</span><span class="s2">&quot;test_files/otp/otp.txt&quot;</span> 
-<span class="g g-Whitespace">      </span><span class="mi">6</span>             <span class="p">,</span> <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;test_files/otp/c0.txt&quot;</span> <span class="p">,</span> <span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="s2">&quot;test_files/otp/target.txt&quot;</span> 
-<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>
+<span class="sd">&#39;&#39;&#39;plaintext_path = &quot;test_files/otp/target_plaintext.txt&quot;</span>
 
-<span class="nn">Cell In[2], line 96,</span> in <span class="ni">main</span><span class="nt">(arguments)</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The key must be at least as long as the plaintext&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span>         <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">96</span>     <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">file_content</span><span class="p">,</span> <span class="n">otp</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="nb">print</span><span class="p">(</span><span class="n">decrypted_text</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="k">else</span><span class="p">:</span>
+<span class="sd">sys.argv = [&quot;&quot;,</span>
+<span class="sd">            &quot;-e&quot;, &quot;test_files/otp/target_plaintext.txt&quot;,</span>
+<span class="sd">            &quot;-d&quot;, &quot;test_files/otp/target.txt&quot;, </span>
+<span class="sd">            &quot;-p&quot;,&quot;test_files/otp/otp.txt&quot;,</span>
+<span class="sd">            &quot;-c&quot;, &quot;test_files/otp/c0.txt&quot;, </span>
+<span class="sd">            &quot;-t&quot;, &quot;test_files/otp/target.txt&quot; </span>
+<span class="sd">            ]</span>
 
-<span class="nn">Cell In[2], line 22,</span> in <span class="ni">decrypt</span><span class="nt">(plain, key)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="c1"># Wrapper just for the naming</span>
-<span class="ne">---&gt; </span><span class="mi">22</span>     <span class="k">return</span> <span class="n">otp_xor</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 
-<span class="nn">Cell In[2], line 4,</span> in <span class="ni">otp_xor</span><span class="nt">(plain, key)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">otp_xor</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">res</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">128</span><span class="p">:</span>
-
-<span class="ne">AssertionError</span>: 
+<span class="sd">main(sys.argv[1:])&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;plaintext_path = &quot;test_files/otp/target_plaintext.txt&quot;\n\nsys.argv = [&quot;&quot;,\n            &quot;-e&quot;, &quot;test_files/otp/target_plaintext.txt&quot;,\n            &quot;-d&quot;, &quot;test_files/otp/target.txt&quot;, \n            &quot;-p&quot;,&quot;test_files/otp/otp.txt&quot;,\n            &quot;-c&quot;, &quot;test_files/otp/c0.txt&quot;, \n            &quot;-t&quot;, &quot;test_files/otp/target.txt&quot; \n            ]\n\n\nmain(sys.argv[1:])&#39;
 </pre></div>
 </div>
 </div>
