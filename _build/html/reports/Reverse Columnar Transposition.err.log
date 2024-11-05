@@ -12,6 +12,7 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 def main(argv):
+    print(argv)
     if len(argv) != 2: #if input is incorrect exit
         print("\033[91m input should be: python encrypt.py <keyword> <plaintext> \033[00m")
         sys.exit(0)
@@ -39,10 +40,17 @@ def main(argv):
     print("\nCiphertext: "+ ciphertext)
 
 if __name__ == "__main__":
+    print(sys.argv[0])
+    print(sys.argv[1])
+    print(sys.argv[2])
     main(sys.argv[1:]) #excecute main when file runs as a script, only get keyword and plaintext input
 ------------------
 
 ----- stdout -----
+
+PASSWORD
+FAR OUT IN THE UNCHARTED BACKWATERS
+['PASSWORD', 'FAR OUT IN THE UNCHARTED BACKWATERS', '--HistoryManager.hist_file=:memory:']
 [91m input should be: python encrypt.py <keyword> <plaintext> [00m
 ----- stderr -----
 /home/artemi/.local/lib/python3.10/site-packages/IPython/core/interactiveshell.py:3585: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.

@@ -463,165 +463,140 @@ assume that index as a possible space character in the ciphertext that is being 
 Since space characters XOR-ed with a letter character simply change the case of the letter, by
 XOR-ing all the texts with each other one can guess most of the characters in the target text.
 While trying to decrypt the target ciphertext all still to be found characters should be replaced
-with the asterisk symbol (*)<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">secrets</span>
-</pre></div>
-</div>
-</div>
-</div>
+with the asterisk symbol (*)<p>import string
+import sys
+import argparse
+import secrets</p>
 <p>WARNING: The code bellow is in comments because it needs file input to run which is not available with jupyter-book</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;def otp_xor(plain: bytes, key: bytes):</span>
-<span class="sd">    res = b&quot;&quot;</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def otp_xor(plain: bytes, key: bytes):
+    res = b&quot;&quot;
 
-<span class="sd">    assert (len(plain) &lt;= len(key))</span>
+    assert (len(plain) &lt;= len(key))
 
-<span class="sd">    for p, k in zip(plain, key):</span>
-<span class="sd">        if p &lt; 128:</span>
-<span class="sd">            res += bytes([p ^ k])</span>
-<span class="sd">        else:</span>
-<span class="sd">            res += bytes([p])</span>
+    for p, k in zip(plain, key):
+        if p &lt; 128:
+            res += bytes([p ^ k])
+        else:
+            res += bytes([p])
 
-<span class="sd">    return res</span>
+    return res
 
 
-<span class="sd">def encrypt(plain: bytes, key: bytes):</span>
-<span class="sd">    # Wrapper just for the naming</span>
-<span class="sd">    return otp_xor(plain, key)</span>
+def encrypt(plain: bytes, key: bytes):
+    # Wrapper just for the naming
+    return otp_xor(plain, key)
 
 
-<span class="sd">def decrypt(plain: bytes, key: bytes):</span>
-<span class="sd">    # Wrapper just for the naming</span>
-<span class="sd">    return otp_xor(plain, key)</span>
+def decrypt(plain: bytes, key: bytes):
+    # Wrapper just for the naming
+    return otp_xor(plain, key)
 
 
-<span class="sd">def cryptanalysis(ciphertexts: list[bytes], target: bytes):</span>
-<span class="sd">    key = bytearray([c ^ ord(&#39;*&#39;) for c in target])</span>
+def cryptanalysis(ciphertexts: list[bytes], target: bytes):
+    key = bytearray([c ^ ord(&#39;*&#39;) for c in target])
 
-<span class="sd">    for cipher1 in ciphertexts:</span>
-<span class="sd">        count = {}</span>
-<span class="sd">        for cipher2 in ciphertexts:</span>
-<span class="sd">            if not (cipher1 is cipher2):</span>
-<span class="sd">                for x_i, chars in enumerate(zip(cipher1, cipher2)):</span>
-<span class="sd">                    if chr(chars[0] ^ chars[1]) in string.ascii_letters:</span>
-<span class="sd">                        count[x_i] = count.get(x_i, 0)+1</span>
+    for cipher1 in ciphertexts:
+        count = {}
+        for cipher2 in ciphertexts:
+            if not (cipher1 is cipher2):
+                for x_i, chars in enumerate(zip(cipher1, cipher2)):
+                    if chr(chars[0] ^ chars[1]) in string.ascii_letters:
+                        count[x_i] = count.get(x_i, 0)+1
 
-<span class="sd">        for x_i, c in count.items():</span>
-<span class="sd">            if c/len(ciphertexts) &gt;= 0.75:</span>
-<span class="sd">                key[x_i] = cipher1[x_i] ^ ord(&#39; &#39;)</span>
+        for x_i, c in count.items():
+            if c/len(ciphertexts) &gt;= 0.75:
+                key[x_i] = cipher1[x_i] ^ ord(&#39; &#39;)
 
-<span class="sd">    return bytes([t ^ k for t, k in zip(target, key)])</span>
+    return bytes([t ^ k for t, k in zip(target, key)])
 
-<span class="sd">    # Perhaps use a dictionary to improve the results of the attack</span>
+    # Perhaps use a dictionary to improve the results of the attack
 
 
-<span class="sd">def main(arguments):</span>
+def main(arguments):
 
-<span class="sd">    parser = argparse.ArgumentParser(</span>
-<span class="sd">        formatter_class=argparse.RawDescriptionHelpFormatter)</span>
-<span class="sd">    parser.add_argument(&quot;-e&quot;, &quot;--encrypt&quot;,</span>
-<span class="sd">                        help=&quot;Encrypt text file&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
-<span class="sd">    parser.add_argument(</span>
-<span class="sd">        &quot;-d&quot;, &quot;--decrypt&quot;, help=&quot;Decrypt ciphertext file&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
-<span class="sd">    parser.add_argument(</span>
-<span class="sd">        &quot;-p&quot;, &quot;--otp&quot;, help=&quot;One-time pad used for encryption/decryption&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
-<span class="sd">    parser.add_argument(&quot;-c&quot;, &quot;--cryptanalysis&quot;, nargs=&quot;+&quot;,</span>
-<span class="sd">                        help=&quot;Perform cryptanalysis on the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
-<span class="sd">    parser.add_argument(</span>
-<span class="sd">        &quot;-t&quot;, &quot;--target&quot;, help=&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))</span>
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument(&quot;-e&quot;, &quot;--encrypt&quot;,
+                    help=&quot;Encrypt text file&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(
+        &quot;-d&quot;, &quot;--decrypt&quot;, help=&quot;Decrypt ciphertext file&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(
+        &quot;-p&quot;, &quot;--otp&quot;, help=&quot;One-time pad used for encryption/decryption&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(&quot;-c&quot;, &quot;--cryptanalysis&quot;, nargs=&quot;+&quot;,
+                        help=&quot;Perform cryptanalysis on the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))
+    parser.add_argument(
+        &quot;-t&quot;, &quot;--target&quot;, help=&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;, type=argparse.FileType(&#39;rb&#39;))
 
-<span class="sd">    parser.add_argument(</span>
-<span class="sd">        &quot;-o&quot;, &quot;--output&quot;, help=&quot;The file where the result of the encryption/decryption will be written&quot;, type=argparse.FileType(&#39;wb&#39;))</span>
+    parser.add_argument(
+        &quot;-o&quot;, &quot;--output&quot;, help=&quot;The file where the result of the encryption/decryption will be written&quot;, type=argparse.FileType(&#39;wb&#39;))
 
-<span class="sd">    args = parser.parse_args(arguments)</span>
+    args = parser.parse_args(arguments)
 
-<span class="sd">    if args.encrypt:</span>
-<span class="sd">        file_content: bytes = args.encrypt.read()</span>
-<span class="sd">        if args.otp:</span>
-<span class="sd">            otp: bytes = args.otp.read()</span>
-<span class="sd">            if len(file_content) &gt; len(otp):</span>
-<span class="sd">                print(&quot;The key must be at least as long as the plaintext&quot;)</span>
-<span class="sd">                exit(1)</span>
-<span class="sd">        else:</span>
-<span class="sd">            otp = bytes([secrets.randbelow(128)</span>
-<span class="sd">                         for _ in range(len(file_content))])</span>
-<span class="sd">            print(</span>
-<span class="sd">                f&quot;No key selected. Auto-generated key: {otp}&quot;, file=sys.stderr)</span>
-<span class="sd">        # Replace this comment and the following statement with your code</span>
-<span class="sd">        encrypted_text = encrypt(file_content, otp)</span>
-<span class="sd">        if args.output:</span>
-<span class="sd">            args.output.write(encrypted_text)</span>
-<span class="sd">        else:</span>
-<span class="sd">            print(</span>
-<span class="sd">                &quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable\n&quot;, file=sys.stderr)</span>
+    if args.encrypt:
+        file_content: bytes = args.encrypt.read()
+        if args.otp:
+            otp: bytes = args.otp.read()
+            if len(file_content) &gt; len(otp):
+                print(&quot;The key must be at least as long as the plaintext&quot;)
+                exit(1)
+        else:
+            otp = bytes([secrets.randbelow(128)
+                         for _ in range(len(file_content))])
+            print(
+                f&quot;No key selected. Auto-generated key: {otp}&quot;, file=sys.stderr)
+        # Replace this comment and the following statement with your code
+        encrypted_text = encrypt(file_content, otp)
+        if args.output:
+            args.output.write(encrypted_text)
+        else:
+            print(
+                &quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable\n&quot;, file=sys.stderr)
 
-<span class="sd">            print(encrypted_text.decode())</span>
-<span class="sd">    if args.decrypt:</span>
-<span class="sd">        if args.otp:</span>
-<span class="sd">            otp: bytes = args.otp.read()</span>
-<span class="sd">            file_content: bytes = args.decrypt.read()</span>
-<span class="sd">            # Replace this comment and the following statement with your code</span>
+            print(encrypted_text.decode())
+        if args.decrypt:
+        if args.otp:
+            otp: bytes = args.otp.read()
+            file_content: bytes = args.decrypt.read()
+            # Replace this comment and the following statement with your code
 
-<span class="sd">            if len(file_content) &gt; len(otp):</span>
-<span class="sd">                print(&quot;The key must be at least as long as the plaintext&quot;)</span>
-<span class="sd">                exit(1)</span>
+            if len(file_content) &gt; len(otp):
+                print(&quot;The key must be at least as long as the plaintext&quot;)
+                exit(1)
 
-<span class="sd">            decrypted_text = decrypt(file_content, otp)</span>
-<span class="sd">            print(decrypted_text.decode())</span>
-<span class="sd">        else:</span>
-<span class="sd">            parser.error(&quot;-d/--decrypt requires -p/--otp&quot;)</span>
-<span class="sd">    if args.cryptanalysis:</span>
-<span class="sd">        if args.target:</span>
-<span class="sd">            amount_of_ciphertexts = len(args.cryptanalysis)</span>
-<span class="sd">            ciphertexts = []</span>
-<span class="sd">            target_cipher_text = args.target.read()</span>
-<span class="sd">            for i in range(amount_of_ciphertexts):</span>
-<span class="sd">                ciphertexts.append(args.cryptanalysis[i].read())</span>
-<span class="sd">            # Replace this comment and the following statement with your code</span>
-<span class="sd">            decrypted_text = cryptanalysis(ciphertexts, target_cipher_text)</span>
-<span class="sd">            if args.output:</span>
-<span class="sd">                args.output.write(decrypted_text)</span>
-<span class="sd">            else:</span>
-<span class="sd">                print(decrypted_text.decode())</span>
-<span class="sd">        else:</span>
-<span class="sd">            parser.error(&quot;-c/--cryptanalysis requires -t/--target&quot;)&#39;&#39;&#39;</span>
+            decrypted_text = decrypt(file_content, otp)
+            print(decrypted_text.decode())
+        else:
+            parser.error(&quot;-d/--decrypt requires -p/--otp&quot;)
+    if args.cryptanalysis:
+        if args.target:
+            amount_of_ciphertexts = len(args.cryptanalysis)
+            ciphertexts = []
+            target_cipher_text = args.target.read()
+            for i in range(amount_of_ciphertexts):
+                ciphertexts.append(args.cryptanalysis[i].read())
+            # Replace this comment and the following statement with your code
+            decrypted_text = cryptanalysis(ciphertexts, target_cipher_text)
+            if args.output:
+                args.output.write(decrypted_text)
+            else:
+                print(decrypted_text.decode())
+        else:
+            parser.error(&quot;-c/--cryptanalysis requires -t/--target&quot;)
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;def otp_xor(plain: bytes, key: bytes):\n    res = b&quot;&quot;\n\n    assert (len(plain) &lt;= len(key))\n\n    for p, k in zip(plain, key):\n        if p &lt; 128:\n            res += bytes([p ^ k])\n        else:\n            res += bytes([p])\n\n    return res\n\n\ndef encrypt(plain: bytes, key: bytes):\n    # Wrapper just for the naming\n    return otp_xor(plain, key)\n\n\ndef decrypt(plain: bytes, key: bytes):\n    # Wrapper just for the naming\n    return otp_xor(plain, key)\n\n\ndef cryptanalysis(ciphertexts: list[bytes], target: bytes):\n    key = bytearray([c ^ ord(\&#39;*\&#39;) for c in target])\n\n    for cipher1 in ciphertexts:\n        count = {}\n        for cipher2 in ciphertexts:\n            if not (cipher1 is cipher2):\n                for x_i, chars in enumerate(zip(cipher1, cipher2)):\n                    if chr(chars[0] ^ chars[1]) in string.ascii_letters:\n                        count[x_i] = count.get(x_i, 0)+1\n\n        for x_i, c in count.items():\n            if c/len(ciphertexts) &gt;= 0.75:\n                key[x_i] = cipher1[x_i] ^ ord(\&#39; \&#39;)\n\n    return bytes([t ^ k for t, k in zip(target, key)])\n\n    # Perhaps use a dictionary to improve the results of the attack\n\n\ndef main(arguments):\n\n    parser = argparse.ArgumentParser(\n        formatter_class=argparse.RawDescriptionHelpFormatter)\n    parser.add_argument(&quot;-e&quot;, &quot;--encrypt&quot;,\n                        help=&quot;Encrypt text file&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(\n        &quot;-d&quot;, &quot;--decrypt&quot;, help=&quot;Decrypt ciphertext file&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(\n        &quot;-p&quot;, &quot;--otp&quot;, help=&quot;One-time pad used for encryption/decryption&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(&quot;-c&quot;, &quot;--cryptanalysis&quot;, nargs=&quot;+&quot;,\n                        help=&quot;Perform cryptanalysis on the given ciphertexts&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n    parser.add_argument(\n        &quot;-t&quot;, &quot;--target&quot;, help=&quot;Ciphertext to decrypt using the results from cryptanalysis of the given ciphertexts&quot;, type=argparse.FileType(\&#39;rb\&#39;))\n\n    parser.add_argument(\n        &quot;-o&quot;, &quot;--output&quot;, help=&quot;The file where the result of the encryption/decryption will be written&quot;, type=argparse.FileType(\&#39;wb\&#39;))\n\n    args = parser.parse_args(arguments)\n\n    if args.encrypt:\n        file_content: bytes = args.encrypt.read()\n        if args.otp:\n            otp: bytes = args.otp.read()\n            if len(file_content) &gt; len(otp):\n                print(&quot;The key must be at least as long as the plaintext&quot;)\n                exit(1)\n        else:\n            otp = bytes([secrets.randbelow(128)\n                         for _ in range(len(file_content))])\n            print(\n                f&quot;No key selected. Auto-generated key: {otp}&quot;, file=sys.stderr)\n        # Replace this comment and the following statement with your code\n        encrypted_text = encrypt(file_content, otp)\n        if args.output:\n            args.output.write(encrypted_text)\n        else:\n            print(\n                &quot;WARNING: -o/--output is suggested with -e/--encrypt. Output to command line is unstable\n&quot;, file=sys.stderr)\n\n            print(encrypted_text.decode())\n    if args.decrypt:\n        if args.otp:\n            otp: bytes = args.otp.read()\n            file_content: bytes = args.decrypt.read()\n            # Replace this comment and the following statement with your code\n\n            if len(file_content) &gt; len(otp):\n                print(&quot;The key must be at least as long as the plaintext&quot;)\n                exit(1)\n\n            decrypted_text = decrypt(file_content, otp)\n            print(decrypted_text.decode())\n        else:\n            parser.error(&quot;-d/--decrypt requires -p/--otp&quot;)\n    if args.cryptanalysis:\n        if args.target:\n            amount_of_ciphertexts = len(args.cryptanalysis)\n            ciphertexts = []\n            target_cipher_text = args.target.read()\n            for i in range(amount_of_ciphertexts):\n                ciphertexts.append(args.cryptanalysis[i].read())\n            # Replace this comment and the following statement with your code\n            decrypted_text = cryptanalysis(ciphertexts, target_cipher_text)\n            if args.output:\n                args.output.write(decrypted_text)\n            else:\n                print(decrypted_text.decode())\n        else:\n            parser.error(&quot;-c/--cryptanalysis requires -t/--target&quot;)&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>
-<span class="sd">&#39;&#39;&#39;plaintext_path = &quot;test_files/otp/target_plaintext.txt&quot;</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plaintext_path = &quot;test_files/otp/target_plaintext.txt&quot;
 
-<span class="sd">sys.argv = [&quot;&quot;,</span>
-<span class="sd">            &quot;-e&quot;, &quot;test_files/otp/target_plaintext.txt&quot;,</span>
-<span class="sd">            &quot;-d&quot;, &quot;test_files/otp/target.txt&quot;, </span>
-<span class="sd">            &quot;-p&quot;,&quot;test_files/otp/otp.txt&quot;,</span>
-<span class="sd">            &quot;-c&quot;, &quot;test_files/otp/c0.txt&quot;, </span>
-<span class="sd">            &quot;-t&quot;, &quot;test_files/otp/target.txt&quot; </span>
-<span class="sd">            ]</span>
+sys.argv = [&quot;&quot;,
+        &quot;-e&quot;, &quot;test_files/otp/target_plaintext.txt&quot;,
+        &quot;-d&quot;, &quot;test_files/otp/target.txt&quot;, 
+        &quot;-p&quot;,&quot;test_files/otp/otp.txt&quot;,
+        &quot;-c&quot;, &quot;test_files/otp/c0.txt&quot;, 
+        &quot;-t&quot;, &quot;test_files/otp/target.txt&quot; 
+        ]
 
 
-<span class="sd">main(sys.argv[1:])&#39;&#39;&#39;</span>
+main(sys.argv[1:])
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;plaintext_path = &quot;test_files/otp/target_plaintext.txt&quot;\n\nsys.argv = [&quot;&quot;,\n            &quot;-e&quot;, &quot;test_files/otp/target_plaintext.txt&quot;,\n            &quot;-d&quot;, &quot;test_files/otp/target.txt&quot;, \n            &quot;-p&quot;,&quot;test_files/otp/otp.txt&quot;,\n            &quot;-c&quot;, &quot;test_files/otp/c0.txt&quot;, \n            &quot;-t&quot;, &quot;test_files/otp/target.txt&quot; \n            ]\n\n\nmain(sys.argv[1:])&#39;
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
