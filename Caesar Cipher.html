@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="One-time pad" href="One-time%20pad.html" />
-    <link rel="prev" title="Content with notebooks" href="notebooks.html" />
+    <link rel="prev" title="Welcome to HY458 Assignments book" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -164,17 +164,14 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to HY458 Assignments book
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Caesar Cipher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="One-time%20pad.html">One-time pad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Vigen%C3%A8re%20Cipher.html">Vigenère Cipher</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
 
     </div>
@@ -443,8 +440,8 @@ perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: E
 <ul class="simple">
 <li><p>For the encryption and decryption functions one must take into account the following:</p>
 <ul>
-<li><p>The amount of shift must be configurable through the command line</p></li>
-<li><p>The plaintext/ciphertext should be provided as an input text file</p></li>
+<li><p>The amount of shift must be configurable through the command line as an integer</p></li>
+<li><p>The plaintext/ciphertext should be provided as a string</p></li>
 <li><p>Both uppercase and lowercase alphabetic characters should be supported</p></li>
 <li><p>Uppercase characters should be encrypted/decrypted to uppercase characters and lowercase characters to lowercase characters</p></li>
 <li><p>No substitution for non english alphabetic characters</p></li>
@@ -459,7 +456,7 @@ perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: E
 </li>
 </ul>
 <h3>1.2: Cryptanalysis </h3>
-(cannot run cryptanalysis live on jupyterbook, you can run it locally and provide dictionary_1000.txt)
+<font color='red'>&emsp;(cannot run cryptanalysis live on jupyterbook, you can run it locally by providing dictionary_1000.txt)</font>
 <p>Create a function to decrypt various messages by exhaustively trying all keys until you see something that looks like English. Try automating this:</p>
 <ol class="arabic simple">
 <li><p>Create a program that takes in an encoded string, then try decoding it with all 25 shift values.</p></li>
@@ -562,8 +559,9 @@ perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: E
 <span class="c1">#by providing the dictionary_1000.txt found in the HY458 2022 assignment1 zip.</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;-e&quot;</span><span class="p">,</span>  <span class="s2">&quot;Cryptography prior to the modern age was effectively synonymous with encryption, converting readable information (plaintext) to unintelligible nonsense text (ciphertext), which can only be read by reversing the process (decryption). The sender of an encrypted (coded) message shares the decryption (decoding) technique only with intended recipients to preclude access from adversaries. The cryptography literature often uses the names </span><span class="se">\&quot;</span><span class="s2">Alice</span><span class="se">\&quot;</span><span class="s2"> (or </span><span class="se">\&quot;</span><span class="s2">A</span><span class="se">\&quot;</span><span class="s2">) for the sender, </span><span class="se">\&quot;</span><span class="s2">Bob</span><span class="se">\&quot;</span><span class="s2"> (or </span><span class="se">\&quot;</span><span class="s2">B</span><span class="se">\&quot;</span><span class="s2">) for the intended recipient, and </span><span class="se">\&quot;</span><span class="s2">Eve</span><span class="se">\&quot;</span><span class="s2"> (or </span><span class="se">\&quot;</span><span class="s2">E</span><span class="se">\&quot;</span><span class="s2">) for the eavesdropping adversary. Extensive open academic research into cryptography is relatively recent, beginning in the mid-1970s.&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> 
-                <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;Qfmdhcufodvmdfwcfhchvsacrsfbouskogsttsqhwjszmgmbcbmacigkwhvsbqfmdhwcb,qcbjsfhwbufsoropzswbtcfaohwcb(dzowbhslh)hcibwbhszzwuwpzsbcbgsbgshslh(qwdvsfhslh),kvwqvqobcbzmpsfsorpmfsjsfgwbuhvsdfcqsgg(rsqfmdhwcb).Hvsgsbrsfctobsbqfmdhsr(qcrsr)asggousgvofsghvsrsqfmdhwcb(rsqcrwbu)hsqvbweiscbzmkwhvwbhsbrsrfsqwdwsbhghcdfsqzirsoqqsggtfcaorjsfgofwsg.Hvsqfmdhcufodvmzwhsfohifscthsbigsghvsboasg</span><span class="se">\&quot;</span><span class="s2">Ozwqs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">O</span><span class="se">\&quot;</span><span class="s2">)tcfhvsgsbrsf,</span><span class="se">\&quot;</span><span class="s2">Pcp</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">P</span><span class="se">\&quot;</span><span class="s2">)tcfhvswbhsbrsrfsqwdwsbh,obr</span><span class="se">\&quot;</span><span class="s2">Sjs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">S</span><span class="se">\&quot;</span><span class="s2">)tcfhvssojsgrfcddwbuorjsfgofm.Slhsbgwjscdsboqorsawqfsgsofqvwbhcqfmdhcufodvmwgfszohwjszmfsqsbh,psuwbbwbuwbhvsawr-1970g.&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;Qfmdhcufodvmdfwcfhchvsacrsfbouskogsttsqhwjszmgmbcbmacigkwhvsbqfmdhwcb,qcbjsfhwbufsoropzswbtcfaohwcb(dzowbhslh)hcibwbhszzwuwpzsbcbgsbgshslh(qwdvsfhslh),kvwqvqobcbzmpsfsorpmfsjsfgwbuhvsdfcqsgg(rsqfmdhwcb).Hvsgsbrsfctobsbqfmdhsr(qcrsr)asggousgvofsghvsrsqfmdhwcb(rsqcrwbu)hsqvbweiscbzmkwhvwbhsbrsrfsqwdwsbhghcdfsqzirsoqqsggtfcaorjsfgofwsg.Hvsqfmdhcufodvmzwhsfohifscthsbigsghvsboasg</span><span class="se">\&quot;</span><span class="s2">Ozwqs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">O</span><span class="se">\&quot;</span><span class="s2">)tcfhvsgsbrsf,</span><span class="se">\&quot;</span><span class="s2">Pcp</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">P</span><span class="se">\&quot;</span><span class="s2">)tcfhvswbhsbrsrfsqwdwsbh,obr</span><span class="se">\&quot;</span><span class="s2">Sjs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">S</span><span class="se">\&quot;</span><span class="s2">)tcfhvssojsgrfcddwbuorjsfgofm.Slhsbgwjscdsboqorsawqfsgsofqvwbhcqfmdhcufodvmwgfszohwjszmfsqsbh,psuwbbwbuwbhvsawr-1970g.&quot;</span><span class="p">]</span>
+                <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;Qfmdhcufodvmdfwcfhchvsacrsfbouskogsttsqhwjszmgmbcbmacigkwhvsbqfmdhwcb,qcbjsfhwbufsoropzswbtcfaohwcb(dzowbhslh)hcibwbhszzwuwpzsbcbgsbgshslh(qwdvsfhslh),kvwqvqobcbzmpsfsorpmfsjsfgwbuhvsdfcqsgg(rsqfmdhwcb).Hvsgsbrsfctobsbqfmdhsr(qcrsr)asggousgvofsghvsrsqfmdhwcb(rsqcrwbu)hsqvbweiscbzmkwhvwbhsbrsrfsqwdwsbhghcdfsqzirsoqqsggtfcaorjsfgofwsg.Hvsqfmdhcufodvmzwhsfohifscthsbigsghvsboasg</span><span class="se">\&quot;</span><span class="s2">Ozwqs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">O</span><span class="se">\&quot;</span><span class="s2">)tcfhvsgsbrsf,</span><span class="se">\&quot;</span><span class="s2">Pcp</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">P</span><span class="se">\&quot;</span><span class="s2">)tcfhvswbhsbrsrfsqwdwsbh,obr</span><span class="se">\&quot;</span><span class="s2">Sjs</span><span class="se">\&quot;</span><span class="s2">(cf</span><span class="se">\&quot;</span><span class="s2">S</span><span class="se">\&quot;</span><span class="s2">)tcfhvssojsgrfcddwbuorjsfgofm.Slhsbgwjscdsboqorsawqfsgsofqvwbhcqfmdhcufodvmwgfszohwjszmfsqsbh,psuwbbwbuwbhvsawr-1970g.&quot;</span>
+                <span class="c1">#&quot;-c&quot;, &quot;Qfmdhcufodvmdfwcfhchvsacrsfbouskogsttsqhwjszmgmbcbmacigkwhvsbqfmdhwcb,qcbjsfhwbufsoropzswbtcfaohwcb(dzowbhslh)hcibwbhszzwuwpzsbcbgsbgshslh(qwdvsfhslh),kvwqvqobcbzmpsfsorpmfsjsfgwbuhvsdfcqsgg(rsqfmdhwcb).Hvsgsbrsfctobsbqfmdhsr(qcrsr)asggousgvofsghvsrsqfmdhwcb(rsqcrwbu)hsqvbweiscbzmkwhvwbhsbrsrfsqwdwsbhghcdfsqzirsoqqsggtfcaorjsfgofwsg.Hvsqfmdhcufodvmzwhsfohifscthsbigsghvsboasg\&quot;Ozwqs\&quot;(cf\&quot;O\&quot;)tcfhvsgsbrsf,\&quot;Pcp\&quot;(cf\&quot;P\&quot;)tcfhvswbhsbrsrfsqwdwsbh,obr\&quot;Sjs\&quot;(cf\&quot;S\&quot;)tcfhvssojsgrfcddwbuorjsfgofm.Slhsbgwjscdsboqorsawqfsgsofqvwbhcqfmdhcufodvmwgfszohwjszmfsqsbh,psuwbbwbuwbhvsawr-1970g.&quot;</span>
+           <span class="p">]</span>
 
 
 <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
@@ -573,7 +571,6 @@ perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: E
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ENCRYPTED TEXT:::::::::::Qfmdhcufodvmdfwcfhchvsacrsfbouskogsttsqhwjszmgmbcbmacigkwhvsbqfmdhwcb,qcbjsfhwbufsoropzswbtcfaohwcb(dzowbhslh)hcibwbhszzwuwpzsbcbgsbgshslh(qwdvsfhslh),kvwqvqobcbzmpsfsorpmfsjsfgwbuhvsdfcqsgg(rsqfmdhwcb).Hvsgsbrsfctobsbqfmdhsr(qcrsr)asggousgvofsghvsrsqfmdhwcb(rsqcrwbu)hsqvbweiscbzmkwhvwbhsbrsrfsqwdwsbhghcdfsqzirsoqqsggtfcaorjsfgofwsg.Hvsqfmdhcufodvmzwhsfohifscthsbigsghvsboasg&quot;Ozwqs&quot;(cf&quot;O&quot;)tcfhvsgsbrsf,&quot;Pcp&quot;(cf&quot;P&quot;)tcfhvswbhsbrsrfsqwdwsbh,obr&quot;Sjs&quot;(cf&quot;S&quot;)tcfhvssojsgrfcddwbuorjsfgofm.Slhsbgwjscdsboqorsawqfsgsofqvwbhcqfmdhcufodvmwgfszohwjszmfsqsbh,psuwbbwbuwbhvsawr-1970g.
 DECRYPTED TEXT:::::::::::Cryptographypriortothemodernagewaseffectivelysynonymouswithencryption,convertingreadableinformation(plaintext)tounintelligiblenonsensetext(ciphertext),whichcanonlybereadbyreversingtheprocess(decryption).Thesenderofanencrypted(coded)messagesharesthedecryption(decoding)techniqueonlywithintendedrecipientstoprecludeaccessfromadversaries.Thecryptographyliteratureoftenusesthenames&quot;Alice&quot;(or&quot;A&quot;)forthesender,&quot;Bob&quot;(or&quot;B&quot;)fortheintendedrecipient,and&quot;Eve&quot;(or&quot;E&quot;)fortheeavesdroppingadversary.Extensiveopenacademicresearchintocryptographyisrelativelyrecent,beginninginthemid-1970s.
-CRYPTANALYSIS:::::::::::Cryptographypriortothemodernagewaseffectivelysynonymouswithencryption,convertingreadableinformation(plaintext)tounintelligiblenonsensetext(ciphertext),whichcanonlybereadbyreversingtheprocess(decryption).Thesenderofanencrypted(coded)messagesharesthedecryption(decoding)techniqueonlywithintendedrecipientstoprecludeaccessfromadversaries.Thecryptographyliteratureoftenusesthenames&quot;Alice&quot;(or&quot;A&quot;)forthesender,&quot;Bob&quot;(or&quot;B&quot;)fortheintendedrecipient,and&quot;Eve&quot;(or&quot;E&quot;)fortheeavesdroppingadversary.Extensiveopenacademicresearchintocryptographyisrelativelyrecent,beginninginthemid-1970s.
 </pre></div>
 </div>
 </div>
@@ -612,12 +609,12 @@ CRYPTANALYSIS:::::::::::Cryptographypriortothemodernagewaseffectivelysynonymousw
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="notebooks.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Content with notebooks</p>
+        <p class="prev-next-title">Welcome to HY458 Assignments book</p>
       </div>
     </a>
     <a class="right-next"

@@ -1,11 +1,11 @@
-# Welcome to your Jupyter Book
+# Welcome to HY458 Assignments book
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+This book contains the assignments of the previous years(2022-2023) and their solutions for the course <b>Introduction to cryptography(HY458)</b>. For every assignment you can find its solution in code blocks. The code blocks are automatically run at first but you can also use the <b>live code</b> feature by clicking at the rocket button located at the top right corner. This feature allows you to change the code(don't worry when you refresh the original code reappears) and run different code blocks. If you make any changes you only need to run the code blocks you changed and the ones after them.
+ 
+ ![Alt text](./livecodeicon.png)
 
-Check out the content pages bundled with this sample book to see more.
 
+
+<b>This book contains:</b>
 ```{tableofcontents}
 ```
