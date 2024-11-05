@@ -525,7 +525,8 @@ ii) Keyword:   “PASSWORD”
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;PASSWORD&quot;</span> <span class="c1">#This is the keyword that you can change to your liking</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;PASSWORD&quot;</span> <span class="c1">#This is the keyword that you can change to your liking</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;FAR OUT IN THE UNCHARTED BACKWATERS&quot;</span> <span class="c1">#This is the plaintext that you can change to your liking</span>
 </pre></div>
 </div>
@@ -534,10 +535,6 @@ ii) Keyword:   “PASSWORD”
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span> <span class="c1">#if input is incorrect exit</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[91m input should be: python encrypt.py &lt;keyword&gt; &lt;plaintext&gt; </span><span class="se">\033</span><span class="s2">[00m&quot;</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
     <span class="n">keyword</span> <span class="o">=</span>  <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">plaintext</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -566,16 +563,25 @@ ii) Keyword:   “PASSWORD”
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> input should be: python encrypt.py &lt;keyword&gt; &lt;plaintext&gt; 
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">An</span> <span class="n">exception</span> <span class="n">has</span> <span class="n">occurred</span><span class="p">,</span> <span class="n">use</span> <span class="o">%</span><span class="k">tb</span> to see the full traceback.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------Reverse columnar transposition encryption-------------------------
+Keyword: PASSWORD
+Plaintext: FAR OUT IN THE UNCHARTED BACKWATERS
 
-<span class="ne">SystemExit</span>: 0
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/artemi/.local/lib/python3.10/site-packages/IPython/core/interactiveshell.py:3585: UserWarning: To exit: use &#39;exit&#39;, &#39;quit&#39;, or Ctrl-D.
-  warn(&quot;To exit: use &#39;exit&#39;, &#39;quit&#39;, or Ctrl-D.&quot;, stacklevel=1)
+Original
+[&#39;P&#39;, &#39;A&#39;, &#39;S&#39;, &#39;S&#39;, &#39;W&#39;, &#39;O&#39;, &#39;R&#39;, &#39;D&#39;]
+[&#39;F&#39;, &#39;A&#39;, &#39;R&#39;, &#39;O&#39;, &#39;U&#39;, &#39;T&#39;, &#39;I&#39;, &#39;N&#39;]
+[&#39;T&#39;, &#39;H&#39;, &#39;E&#39;, &#39;U&#39;, &#39;N&#39;, &#39;C&#39;, &#39;H&#39;, &#39;A&#39;]
+[&#39;R&#39;, &#39;T&#39;, &#39;E&#39;, &#39;D&#39;, &#39;B&#39;, &#39;A&#39;, &#39;C&#39;, &#39;K&#39;]
+[&#39;W&#39;, &#39;A&#39;, &#39;T&#39;, &#39;E&#39;, &#39;R&#39;, &#39;S&#39;, &#39;#&#39;, &#39;#&#39;]
+
+Transposed
+[&#39;A&#39;, &#39;D&#39;, &#39;O&#39;, &#39;P&#39;, &#39;R&#39;, &#39;S&#39;, &#39;S&#39;, &#39;W&#39;]
+[&#39;A&#39;, &#39;N&#39;, &#39;T&#39;, &#39;F&#39;, &#39;I&#39;, &#39;R&#39;, &#39;O&#39;, &#39;U&#39;]
+[&#39;H&#39;, &#39;A&#39;, &#39;C&#39;, &#39;T&#39;, &#39;H&#39;, &#39;E&#39;, &#39;U&#39;, &#39;N&#39;]
+[&#39;T&#39;, &#39;K&#39;, &#39;A&#39;, &#39;R&#39;, &#39;C&#39;, &#39;E&#39;, &#39;D&#39;, &#39;B&#39;]
+[&#39;A&#39;, &#39;#&#39;, &#39;S&#39;, &#39;W&#39;, &#39;#&#39;, &#39;T&#39;, &#39;E&#39;, &#39;R&#39;]
+
+Ciphertext: UNBROUDEREETIHC#FTRWTCASNAK#AHTA
 </pre></div>
 </div>
 </div>
@@ -658,10 +664,6 @@ ii) Keyword:   “PASSWORD”
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span> <span class="c1">#if input is incorrect exit</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[91m input should be: python decrypt.py &lt;keyword&gt; &lt;ciphertext&gt; </span><span class="se">\033</span><span class="s2">[00m&quot;</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
     <span class="n">keyword</span> <span class="o">=</span>  <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
