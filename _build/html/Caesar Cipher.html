@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="One-time pad" href="One-time%20pad.html" />
-    <link rel="prev" title="Welcome to HY458 Assignments book" href="intro.html" />
+    <link rel="prev" title="Setup" href="Setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -168,8 +168,15 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Setup.html">Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/tree/main/test_files">test_files</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Caesar Cipher</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/blob/main/dictionary_1000.txt">dictionary_1000.txt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="One-time%20pad.html">One-time pad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Vigen%C3%A8re%20Cipher.html">Vigenère Cipher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Reverse%20Columnar%20Transposition.html">Reverse Columnar Transposition Cipher</a></li>
@@ -392,7 +399,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
 </ul>
             </nav>
         </div>
@@ -406,36 +413,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="caesar-cipher">
 <h1>Caesar Cipher<a class="headerlink" href="#caesar-cipher" title="Link to this heading">#</a></h1>
-<section id="classic-crypto">
-<h2>Classic Crypto<a class="headerlink" href="#classic-crypto" title="Link to this heading">#</a></h2>
-<H2>Introduction</H2>
-<p>In this assignment you are going to implement from scratch, encryption, decryption and
-cryptanalysis algorithms using Python.
-The main purpose of this assignment is to offer you the opportunity to get famiddar with the
-implementation and internals of such simple ciphers, help you understand how they work and
-find techniques for defeating them.</p>
-<H2>Setup</H2>
-<p>For this and future assignments you will use Python 3 with ddnux, Windows or a Unix based
-machine. We will walk you through instalddng Python 3 in Ubuntu ddnux in this section.
-Installation will be sddghtly different for other versions of ddnux or Unix and may be considerably
-different for Windows.
-If you do not want to mess around with your system Python environment, we suggest creating a
-Python virtual environment using the venv module. This will configure a selected directory with a
-Python interpreter and associated modules. Any modules you install are only locally installed.</p>
-<p>First, we need to install Python 3, Pip, and the venv module:</p>
-<p><font color='orange'> sudo apt install python3 python3-venv python3-pip</font></p>
-<p>Next, we create a project directory:</p>
-<p><font color='orange'>   mkdir hy458</font></p>
-<p><font color='orange'>    cd hy458</font></p>
-<p>Next, we use venv to set up the environment in an env directory:</p>
-<p><font color='orange'>    python3 -m venv env</font></p>
-<p>This will set up the interpreter and modules within the path. Once the installation is complete,
-the environment can be used at any time by the following command:</p>
-<p><font color='orange'>    source env/bin/activate</font></p>
-<p>You should now see a prefix to your shell prompt with the name of your environment.
-When working on the assignments, remember to activate your Python virtual environment first if
-you don’t want Python modules to be installed system-wide.
-For each program you are requested to implement, use the provided python script template.</p>
+<section id="classic-crypto-fall-2022-2023">
+<h2>Classic Crypto (FALL 2022-2023)<a class="headerlink" href="#classic-crypto-fall-2022-2023" title="Link to this heading">#</a></h2>
 <h2>1. Caesar’s cipher</h2>
 Create a Python program that encrypts/decrypts messages using Caesar’s cipher and is able to
 perform cryptanalysis against Caesar’s cipher for a given ciphertext<h3>1.1: Encryption & Decryption</h3>
@@ -611,12 +590,12 @@ DECRYPTED TEXT:::::::::::Cryptographypriortothemodernagewaseffectivelysynonymous
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="Setup.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to HY458 Assignments book</p>
+        <p class="prev-next-title">Setup</p>
       </div>
     </a>
     <a class="right-next"
@@ -645,7 +624,7 @@ DECRYPTED TEXT:::::::::::Cryptographypriortothemodernagewaseffectivelysynonymous
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
 </ul>
   </nav></div>
 

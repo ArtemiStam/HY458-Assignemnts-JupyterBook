@@ -167,8 +167,15 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Setup.html">Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/tree/main/test_files">test_files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Caesar%20Cipher.html">Caesar Cipher</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/blob/main/dictionary_1000.txt">dictionary_1000.txt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="One-time%20pad.html">One-time pad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Vigen%C3%A8re%20Cipher.html">Vigenère Cipher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Reverse%20Columnar%20Transposition.html">Reverse Columnar Transposition Cipher</a></li>
@@ -391,7 +398,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2023-2024">Classic Crypto (FALL 2023-2024)</a></li>
 </ul>
             </nav>
         </div>
@@ -405,36 +412,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="polybius-square-variant">
 <h1>Polybius Square(variant)<a class="headerlink" href="#polybius-square-variant" title="Link to this heading">#</a></h1>
-<section id="classic-crypto">
-<h2>Classic Crypto<a class="headerlink" href="#classic-crypto" title="Link to this heading">#</a></h2>
-<H2>Introduction</H2>
-<p>In this assignment you are going to implement from scratch, encryption, decryption and
-cryptanalysis algorithms using Python.
-The main purpose of this assignment is to offer you the opportunity to get famiddar with the
-implementation and internals of such simple ciphers, help you understand how they work and
-find techniques for defeating them.</p>
-<H2>Setup</H2>
-<p>For this and future assignments you will use Python 3 with ddnux, Windows or a Unix based
-machine. We will walk you through instalddng Python 3 in Ubuntu ddnux in this section.
-Installation will be sddghtly different for other versions of ddnux or Unix and may be considerably
-different for Windows.
-If you do not want to mess around with your system Python environment, we suggest creating a
-Python virtual environment using the venv module. This will configure a selected directory with a
-Python interpreter and associated modules. Any modules you install are only locally installed.</p>
-<p>First, we need to install Python 3, Pip, and the venv module:</p>
-<p><font color='orange'> sudo apt install python3 python3-venv python3-pip</font></p>
-<p>Next, we create a project directory:</p>
-<p><font color='orange'>   mkdir hy458</font></p>
-<p><font color='orange'>    cd hy458</font></p>
-<p>Next, we use venv to set up the environment in an env directory:</p>
-<p><font color='orange'>    python3 -m venv env</font></p>
-<p>This will set up the interpreter and modules within the path. Once the installation is complete,
-the environment can be used at any time by the following command:</p>
-<p><font color='orange'>    source env/bin/activate</font></p>
-<p>You should now see a prefix to your shell prompt with the name of your environment.
-When working on the assignments, remember to activate your Python virtual environment first if
-you don’t want Python modules to be installed system-wide.
-For each program you are requested to implement, use the provided python script template.</p>
+<section id="classic-crypto-fall-2023-2024">
+<h2>Classic Crypto (FALL 2023-2024)<a class="headerlink" href="#classic-crypto-fall-2023-2024" title="Link to this heading">#</a></h2>
 <h2>5. Polybius Square</h2>
 <p>In this assignment you are required to implement a variation of Polybius Square. You will need to provide a python file with the functions for grid creation, encrypting (10%) and decrypting (10%). You are also required to make the program verbose by adding the necessary prints (print starting plaintext grid ciphertext decrypt text etc.).</p>
 <p>The Polybius Square, also known as the Polybius Checkerboard, is a simple method of encoding letters into a grid of numbers. It is based on a 5x5 grid, where each cell in the grid is assigned a unique combination of two numbers, typically ranging from 11 to 55.</p>
@@ -558,13 +537,13 @@ Plaintext: HELLOWORLD
 
 Polybius Square:
     1    2    3    4    5
-1 [&#39;Q&#39;, &#39;E&#39;, &#39;Y&#39;, &#39;V&#39;, &#39;A&#39;]
-2 [&#39;H&#39;, &#39;T&#39;, &#39;P&#39;, &#39;O&#39;, &#39;S&#39;]
-3 [&#39;R&#39;, &#39;M&#39;, &#39;D&#39;, &#39;W&#39;, &#39;U&#39;]
-4 [&#39;I&#39;, &#39;K&#39;, &#39;Z&#39;, &#39;N&#39;, &#39;C&#39;]
-5 [&#39;F&#39;, &#39;G&#39;, &#39;X&#39;, &#39;L&#39;, &#39;B&#39;]
+1 [&#39;F&#39;, &#39;N&#39;, &#39;I&#39;, &#39;Q&#39;, &#39;T&#39;]
+2 [&#39;Y&#39;, &#39;R&#39;, &#39;G&#39;, &#39;W&#39;, &#39;H&#39;]
+3 [&#39;V&#39;, &#39;B&#39;, &#39;Z&#39;, &#39;S&#39;, &#39;O&#39;]
+4 [&#39;L&#39;, &#39;A&#39;, &#39;E&#39;, &#39;U&#39;, &#39;M&#39;]
+5 [&#39;X&#39;, &#39;C&#39;, &#39;P&#39;, &#39;K&#39;, &#39;D&#39;]
 
-Ciphertext: 21125454243424315433
+Ciphertext: 25434141352435224155
 
 Plaintext: HELLOWORLD
 </pre></div>
@@ -630,7 +609,7 @@ Plaintext: HELLOWORLD
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2023-2024">Classic Crypto (FALL 2023-2024)</a></li>
 </ul>
   </nav></div>
 

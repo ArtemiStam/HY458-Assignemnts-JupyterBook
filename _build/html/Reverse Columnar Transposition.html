@@ -168,8 +168,15 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Setup.html">Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/tree/main/test_files">test_files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Caesar%20Cipher.html">Caesar Cipher</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/blob/main/dictionary_1000.txt">dictionary_1000.txt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="One-time%20pad.html">One-time pad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Vigen%C3%A8re%20Cipher.html">Vigenère Cipher</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reverse Columnar Transposition Cipher</a></li>
@@ -392,7 +399,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2023-2024">Classic Crypto (FALL 2023-2024)</a></li>
 </ul>
             </nav>
         </div>
@@ -406,36 +413,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reverse-columnar-transposition-cipher">
 <h1>Reverse Columnar Transposition Cipher<a class="headerlink" href="#reverse-columnar-transposition-cipher" title="Link to this heading">#</a></h1>
-<section id="classic-crypto">
-<h2>Classic Crypto<a class="headerlink" href="#classic-crypto" title="Link to this heading">#</a></h2>
-<H2>Introduction</H2>
-<p>In this assignment you are going to implement from scratch, encryption, decryption and
-cryptanalysis algorithms using Python.
-The main purpose of this assignment is to offer you the opportunity to get famiddar with the
-implementation and internals of such simple ciphers, help you understand how they work and
-find techniques for defeating them.</p>
-<H2>Setup</H2>
-<p>For this and future assignments you will use Python 3 with ddnux, Windows or a Unix based
-machine. We will walk you through instalddng Python 3 in Ubuntu ddnux in this section.
-Installation will be sddghtly different for other versions of ddnux or Unix and may be considerably
-different for Windows.
-If you do not want to mess around with your system Python environment, we suggest creating a
-Python virtual environment using the venv module. This will configure a selected directory with a
-Python interpreter and associated modules. Any modules you install are only locally installed.</p>
-<p>First, we need to install Python 3, Pip, and the venv module:</p>
-<p><font color='orange'> sudo apt install python3 python3-venv python3-pip</font></p>
-<p>Next, we create a project directory:</p>
-<p><font color='orange'>   mkdir hy458</font></p>
-<p><font color='orange'>    cd hy458</font></p>
-<p>Next, we use venv to set up the environment in an env directory:</p>
-<p><font color='orange'>    python3 -m venv env</font></p>
-<p>This will set up the interpreter and modules within the path. Once the installation is complete,
-the environment can be used at any time by the following command:</p>
-<p><font color='orange'>    source env/bin/activate</font></p>
-<p>You should now see a prefix to your shell prompt with the name of your environment.
-When working on the assignments, remember to activate your Python virtual environment first if
-you don’t want Python modules to be installed system-wide.
-For each program you are requested to implement, use the provided python script template.</p>
+<section id="classic-crypto-fall-2023-2024">
+<h2>Classic Crypto (FALL 2023-2024)<a class="headerlink" href="#classic-crypto-fall-2023-2024" title="Link to this heading">#</a></h2>
 <h2>4. Reverse Columnar Transposition Cipher</h2>
 In this exercise you are required to implement the encryption (10%) and decryption (10%) process of the reverse columnar transposition cipher. Write a python script that will take as input i) the plaintext to be encrypted and the keyword and produces a ciphertext and ii) the ciphertext to be decrypted and the keyword to produce the original plaintext .Your script should be verbose enough to include print statements for each step of the encryption and decryption process.
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Example: ● python encrypt.py &lt;keyword&gt; &lt;plaintext&gt; 
@@ -783,7 +762,7 @@ Plaintext: FAROUTINTHEUNCHARTEDBACKWATERS##
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto">Classic Crypto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2023-2024">Classic Crypto (FALL 2023-2024)</a></li>
 </ul>
   </nav></div>
 

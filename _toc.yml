@@ -3,13 +3,30 @@
 
 format: jb-book
 root: intro
-chapters:
-#- file: markdown
-#- file: notebooks
-- file: Caesar Cipher
-- file: One-time pad
-- file: Vigenère Cipher
-- file: Reverse Columnar Transposition
-- file: Polybius Square
-#- file: markdown-notebooks
+parts:
+#  - caption: Classical Cryptography
+#    chapters:  
+#    - url: https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/tree/main/test_files
+#      title: test_files
+#    - file: Caesar Cipher
+#    - url: https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/blob/main/dictionary_1000.txt
+#      title: dictionary_1000.txt
+#    - file: One-time pad
+#    - file: Vigenère Cipher
+#    - file: Reverse Columnar Transposition
+#    - file: Polybius Square
+- caption: Setup
+  chapters:
+    - file: Setup
+- caption: Classical Cryptography
+  chapters:
+    - url: https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/tree/main/test_files
+      title: test_files
+    - file: Caesar Cipher
+    - url: https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/blob/main/dictionary_1000.txt
+      title: dictionary_1000.txt
+    - file: One-time pad
+    - file: Vigenère Cipher
+    - file: Reverse Columnar Transposition
+    - file: Polybius Square 
 
