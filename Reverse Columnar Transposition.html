@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,22 +27,22 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -172,7 +172,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Setup.html">Setup</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography(FALL 2022)</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/tree/main/test_files">test_files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Caesar%20Cipher.html">Caesar Cipher</a></li>
@@ -182,6 +182,21 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reverse Columnar Transposition Cipher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Polybius%20Square.html">Polybius Square(variant)</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Symmetric Encryption(FALL 2022)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Basic%20functionality.html">Basic functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ECB%3AIntegrity%20issues.html">ECB:Integrity issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ECB%20vs%20CBC%3AConfidentiality%20issues.html">ECB vs CBC: Confidentiality issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CBC%3APadding.html">CBC: Padding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTR%3AReuse%20keys%20and%20nonce.html">CTR: Reuse key and nonce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CBC%20vs%20CTR%3AChanges%20in%20ciphertext.html">CBC vs CTR: Changes in ciphertext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTR%3AIntegrity%20issues.html">CTR: Integrity issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Time%20based%20randomness.html">Time based randomness</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Asymmetric Encryption &amp; Hashing(FALL 2022)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Plain%20RSA%20implementation.html">Plain RSA implementation</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -189,9 +204,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -435,14 +455,14 @@ ii) Keyword:   “PASSWORD”
 <p><img alt="Alt text" src="_images/reverse_columnar_transposition.png" /></p>
 <H2>Encryption Code:</H2><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">arrange_in_rows</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">):</span>    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">arrange_in_rows</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">):</span>    
     <span class="n">grid</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="p">))</span><span class="o">.</span><span class="n">is_integer</span><span class="p">():</span> <span class="c1">#if the length of the plaintext is a multiple of the legth of the keyword</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="p">))</span> <span class="c1">#return the multiple</span>
@@ -466,7 +486,7 @@ ii) Keyword:   “PASSWORD”
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">columnar_transposition</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">columnar_transposition</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
     <span class="n">sorted_keyword_indices</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">keyword</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="c1">#sort the numbers from 0-len(keyword) based on the alphabetical order of the letters in the keyword</span>
     
     <span class="n">transposed_grid</span> <span class="o">=</span> <span class="p">[]</span>
@@ -480,7 +500,7 @@ ii) Keyword:   “PASSWORD”
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_ciphertext</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_ciphertext</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
     <span class="n">ciphertext</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1">#start from the last column</span>
@@ -494,7 +514,7 @@ ii) Keyword:   “PASSWORD”
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_grid</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_grid</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>    
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">message</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
@@ -513,7 +533,7 @@ ii) Keyword:   “PASSWORD”
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
     <span class="n">keyword</span> <span class="o">=</span>  <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">plaintext</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -567,14 +587,14 @@ Ciphertext: UNBROUDEREETIHC#FTRWTCASNAK#AHTA
 </div>
 <H2>Decryption Code:</H2><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_transposed_grid</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_transposed_grid</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">):</span>
     <span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span> <span class="o">/</span> <span class="n">cols</span><span class="p">)</span>
 
@@ -595,7 +615,7 @@ Ciphertext: UNBROUDEREETIHC#FTRWTCASNAK#AHTA
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">columnar_transposition</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">transposed_grid</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">columnar_transposition</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">transposed_grid</span><span class="p">):</span>
     <span class="n">keyword_indices</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">keyword</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="c1">#find the order with which the original grid was transposed</span>
     <span class="n">keyword_indices</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">keyword_indices</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="c1">#based on the original transposition order </span>
     <span class="c1">#sort a list of number from 0 to len(keyword) and if that order is applied on the transposed grid it returns the original grid </span>
@@ -611,7 +631,7 @@ Ciphertext: UNBROUDEREETIHC#FTRWTCASNAK#AHTA
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_plaintext</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">original_grid</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_plaintext</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">original_grid</span><span class="p">):</span>
     <span class="n">plaintext</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">rows</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span> <span class="c1">#dont include the keyword in the plaintext</span>
         <span class="n">plaintext</span> <span class="o">=</span> <span class="n">plaintext</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_grid</span><span class="p">[</span><span class="n">row</span><span class="p">])</span> <span class="c1">#join all the rows except the one with the keyword together to create the plaintext</span>
@@ -623,7 +643,7 @@ Ciphertext: UNBROUDEREETIHC#FTRWTCASNAK#AHTA
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_grid</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_grid</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">message</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
@@ -642,7 +662,7 @@ Ciphertext: UNBROUDEREETIHC#FTRWTCASNAK#AHTA
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
     <span class="n">keyword</span> <span class="o">=</span>  <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -811,8 +831,8 @@ By HY458
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

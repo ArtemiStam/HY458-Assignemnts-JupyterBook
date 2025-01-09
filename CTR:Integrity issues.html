@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setup &#8212; Classical Crypto</title>
+    <title>CTR: Integrity issues &#8212; Classical Crypto</title>
   
   
   
@@ -60,11 +60,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Setup';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CTR:Integrity issues';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Caesar Cipher" href="Caesar%20Cipher.html" />
-    <link rel="prev" title="Welcome to HY458 Assignments book" href="intro.html" />
+    <link rel="next" title="Time based randomness" href="Time%20based%20randomness.html" />
+    <link rel="prev" title="CBC vs CTR: Changes in ciphertext" href="CBC%20vs%20CTR%3AChanges%20in%20ciphertext.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -169,8 +171,8 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Setup.html">Setup</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography(FALL 2022)</span></p>
 <ul class="nav bd-sidenav">
@@ -183,14 +185,14 @@
 <li class="toctree-l1"><a class="reference internal" href="Polybius%20Square.html">Polybius Square(variant)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Symmetric Encryption(FALL 2022)</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Basic%20functionality.html">Basic functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ECB%3AIntegrity%20issues.html">ECB:Integrity issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ECB%20vs%20CBC%3AConfidentiality%20issues.html">ECB vs CBC: Confidentiality issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CBC%3APadding.html">CBC: Padding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CTR%3AReuse%20keys%20and%20nonce.html">CTR: Reuse key and nonce</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CBC%20vs%20CTR%3AChanges%20in%20ciphertext.html">CBC vs CTR: Changes in ciphertext</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CTR%3AIntegrity%20issues.html">CTR: Integrity issues</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CTR: Integrity issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time%20based%20randomness.html">Time based randomness</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Asymmetric Encryption &amp; Hashing(FALL 2022)</span></p>
@@ -303,7 +305,7 @@
       
       
       
-      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FSetup.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FCTR:Integrity issues.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -333,7 +335,7 @@
       
       
       
-      <li><a href="_sources/Setup.ipynb" target="_blank"
+      <li><a href="_sources/CTR:Integrity issues.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +409,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setup</h1>
+    <h1>CTR: Integrity issues</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -421,29 +423,98 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
-<p>For this and future assignments you will use Python 3 with Linux, Windows or a Unix based
-machine. We will walk you through installing Python 3 in Ubuntu Linnux in this section.
-Installation will be slightly different for other versions of Linux or Unix and may be considerably
-different for Windows.
-If you do not want to mess around with your system Python environment, we suggest creating a
-Python virtual environment using the venv module. This will configure a selected directory with a
-Python interpreter and associated modules. Any modules you install are only locally installed.</p>
-<p>First, we need to install Python 3, Pip, and the venv module:</p>
-<p><font color='orange'> sudo apt install python3 python3-venv python3-pip</font></p>
-<p>Next, we create a project directory:</p>
-<p><font color='orange'>   mkdir hy458</font></p>
-<p><font color='orange'>    cd hy458</font></p>
-<p>Next, we use venv to set up the environment in an env directory:</p>
-<p><font color='orange'>    python3 -m venv env</font></p>
-<p>This will set up the interpreter and modules within the path. Once the installation is complete,
-the environment can be used at any time by the following command:</p>
-<p><font color='orange'>    source env/bin/activate</font></p>
-<p>You should now see a prefix to your shell prompt with the name of your environment.
-When working on the assignments, remember to activate your Python virtual environment first if
-you don’t want Python modules to be installed system-wide.
-For each program you are requested to implement, use the provided python script template.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ctr-integrity-issues">
+<h1>CTR: Integrity issues<a class="headerlink" href="#ctr-integrity-issues" title="Link to this heading">#</a></h1>
+<p>Encrypt the contents of receipt.txt using AES-256-CTR, with a key and IV of your choosing. Calculate the size of the header up through the identification of the recipient and extract that many bytes of the encrypted data.</p>
+<p>XOR the plaintext header with the ciphertext header to get the keystream. Once you have this, XOR the extracted keystream with a header identifying Elon Tusk as the recipient.
+Copy the new header ciphertext over the bytes of the encrypted file to create a new message identifying Elon Tusk a the recipient of the money.</p>
+<p>Now repeat the same process, changing the amount of money the recipient should receive to <span class="math notranslate nohighlight">\(9.999.999
+In the end you should have a ciphertext which when decrypted will acknowledge that Elon Tusk should receive \)</span>9.999.999.</p>
+<p>Prove that it works by printing in the console the original and modified ciphertexts as well as the modified message</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">secrets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.ciphers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cipher</span><span class="p">,</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">modes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">xor</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">char_a</span> <span class="o">^</span> <span class="n">char_b</span> <span class="k">for</span> <span class="n">char_a</span><span class="p">,</span> <span class="n">char_b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">encrypt_CTR</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES256</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">modes</span><span class="o">.</span><span class="n">CTR</span><span class="p">(</span><span class="n">nonce</span><span class="p">))</span>
+    <span class="n">encryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">encryptor</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span> <span class="o">+</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">corrupt</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">cipher</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="n">keystream</span> <span class="o">=</span> <span class="n">xor</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">cipher</span><span class="p">)</span>
+    <span class="n">cipher</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">cipher</span><span class="p">)</span>
+
+    <span class="n">cipher</span><span class="p">[</span><span class="mi">39</span><span class="p">]</span> <span class="o">=</span> <span class="n">keystream</span><span class="p">[</span><span class="mi">39</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+    <span class="n">cipher</span><span class="p">[</span><span class="mi">99</span><span class="p">:</span><span class="mi">108</span><span class="p">]</span> <span class="o">=</span> <span class="n">xor</span><span class="p">(</span><span class="n">keystream</span><span class="p">[</span><span class="mi">99</span><span class="p">:</span><span class="mi">108</span><span class="p">],</span> <span class="sa">b</span><span class="s1">&#39;9.999.999&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">cipher</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">decrypt_CTR</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES256</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">modes</span><span class="o">.</span><span class="n">CTR</span><span class="p">(</span><span class="n">nonce</span><span class="p">))</span>
+    <span class="n">decryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decryptor</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span> <span class="o">+</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">receipt</span><span class="p">):</span>
+    
+    
+    <span class="n">plain</span> <span class="o">=</span> <span class="n">receipt</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+
+    <span class="n">key</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+    <span class="n">nonce</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="n">cipher</span> <span class="o">=</span> <span class="n">encrypt_CTR</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">)</span>
+    <span class="n">corrupted</span> <span class="o">=</span> <span class="n">corrupt</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">cipher</span><span class="p">)</span>
+
+    <span class="n">decrypted</span> <span class="o">=</span> <span class="n">decrypt_CTR</span><span class="p">(</span><span class="n">corrupted</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Key: </span><span class="si">{</span><span class="n">key</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nonce: </span><span class="si">{</span><span class="n">nonce</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original ciphertext: </span><span class="si">{</span><span class="n">cipher</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated ciphertext: </span><span class="si">{</span><span class="n">corrupted</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated plaintext: &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">decrypted</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">reciept</span> <span class="o">=</span> <span class="s2">&quot;CreditCardPurchase  Recipient: Elon Musk Buyer: Jeff Bezos Date: 02/04/2020 Amount:$1.000.000  CCNumber: 555-555-555-555&quot;</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">reciept</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: cbfb147008d74ec182a6ef18ca87d83f01c49fa449544f6ee2087b9e899af2fa
+Nonce: 7a7aaacf9643eb9133ba88f315ffec36
+Original ciphertext: 9b5f403df5d53c65debd950860d8da2eebdc09cf545db61a4f981d6057d812d9ca177a275b54ad1b7633ddd17e03dec9fddc7196a7a68dfd8bc80a4dfb4eea0c3e171e5ad459952ee0be4d6fe2b4a01cba6c7049ce97df850836fb37ca837f1170dcb92b605708039257b6c164e1e947bb1f015eb14a9d3a
+Generated ciphertext: 9b5f403df5d53c65debd950860d8da2eebdc09cf545db61a4f981d6057d812d9ca177a275b54ad247633ddd17e03dec9fddc7196a7a68dfd8bc80a4dfb4eea0c3e171e5ad459952ee0be4d6fe2b4a01cba6c7049ce97df850836fb37ca837f1170dcb97f2c0b43009c5bbacd64e1e947bb1f015eb14a9d3a
+Generated plaintext: 
+CreditCardPurchase  Recipient: Elon MusT Buyer: Jeff Bezos Date: 02/04/2020 Amount:$1.000.000  CCNu9.999.999-555-555-555
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,20 +548,20 @@ For each program you are requested to implement, use the provided python script 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="CBC%20vs%20CTR%3AChanges%20in%20ciphertext.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to HY458 Assignments book</p>
+        <p class="prev-next-title">CBC vs CTR: Changes in ciphertext</p>
       </div>
     </a>
     <a class="right-next"
-       href="Caesar%20Cipher.html"
+       href="Time%20based%20randomness.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Caesar Cipher</p>
+        <p class="prev-next-title">Time based randomness</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

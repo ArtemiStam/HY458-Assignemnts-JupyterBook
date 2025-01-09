@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setup &#8212; Classical Crypto</title>
+    <title>ECB:Integrity issues &#8212; Classical Crypto</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Setup';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ECB:Integrity issues';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Caesar Cipher" href="Caesar%20Cipher.html" />
-    <link rel="prev" title="Welcome to HY458 Assignments book" href="intro.html" />
+    <link rel="next" title="ECB vs CBC: Confidentiality issues" href="ECB%20vs%20CBC%3AConfidentiality%20issues.html" />
+    <link rel="prev" title="Basic functionality" href="Basic%20functionality.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -169,8 +169,8 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Setup.html">Setup</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography(FALL 2022)</span></p>
 <ul class="nav bd-sidenav">
@@ -183,9 +183,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Polybius%20Square.html">Polybius Square(variant)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Symmetric Encryption(FALL 2022)</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Basic%20functionality.html">Basic functionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ECB%3AIntegrity%20issues.html">ECB:Integrity issues</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">ECB:Integrity issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ECB%20vs%20CBC%3AConfidentiality%20issues.html">ECB vs CBC: Confidentiality issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CBC%3APadding.html">CBC: Padding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CTR%3AReuse%20keys%20and%20nonce.html">CTR: Reuse key and nonce</a></li>
@@ -303,7 +303,7 @@
       
       
       
-      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FSetup.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FECB:Integrity issues.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -333,7 +333,7 @@
       
       
       
-      <li><a href="_sources/Setup.ipynb" target="_blank"
+      <li><a href="_sources/ECB:Integrity issues.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +407,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setup</h1>
+    <h1>ECB:Integrity issues</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -421,29 +421,87 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
-<p>For this and future assignments you will use Python 3 with Linux, Windows or a Unix based
-machine. We will walk you through installing Python 3 in Ubuntu Linnux in this section.
-Installation will be slightly different for other versions of Linux or Unix and may be considerably
-different for Windows.
-If you do not want to mess around with your system Python environment, we suggest creating a
-Python virtual environment using the venv module. This will configure a selected directory with a
-Python interpreter and associated modules. Any modules you install are only locally installed.</p>
-<p>First, we need to install Python 3, Pip, and the venv module:</p>
-<p><font color='orange'> sudo apt install python3 python3-venv python3-pip</font></p>
-<p>Next, we create a project directory:</p>
-<p><font color='orange'>   mkdir hy458</font></p>
-<p><font color='orange'>    cd hy458</font></p>
-<p>Next, we use venv to set up the environment in an env directory:</p>
-<p><font color='orange'>    python3 -m venv env</font></p>
-<p>This will set up the interpreter and modules within the path. Once the installation is complete,
-the environment can be used at any time by the following command:</p>
-<p><font color='orange'>    source env/bin/activate</font></p>
-<p>You should now see a prefix to your shell prompt with the name of your environment.
-When working on the assignments, remember to activate your Python virtual environment first if
-you don’t want Python modules to be installed system-wide.
-For each program you are requested to implement, use the provided python script template.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ecb-integrity-issues">
+<h1>ECB:Integrity issues<a class="headerlink" href="#ecb-integrity-issues" title="Link to this heading">#</a></h1>
+<p>Create a Python program that encrypts the messages in “message1.txt” and “message2.txt” using AES-128-ECB, using a key of your choosing.</p>
+<p>The aforementioned text files portray messages exchanged between two parties for the setup of a meeting.</p>
+<p>By concatenating a part of the ciphertext created from the first message and a part of the ciphertext created from the second message, create a third ciphertext which when decrypted shows that a meeting will take place at a date and time combination not shown in the first two messages.
+Print the resulting plaintext as well as the ciphertexts for message1.txt, message2.txt and the created message in the console, as a hexadecimal byte representation of the data.</p>
+<p>Padding should not be considered for this exercise</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.ciphers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cipher</span><span class="p">,</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">modes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.padding</span><span class="w"> </span><span class="kn">import</span> <span class="n">PKCS7</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">secrets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">encrypt</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="c1"># Apply PKCS7 padding</span>
+    <span class="n">padder</span> <span class="o">=</span> <span class="n">PKCS7</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">padder</span><span class="p">()</span>
+    <span class="n">padded_data</span> <span class="o">=</span> <span class="n">padder</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span> <span class="o">+</span> <span class="n">padder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+    
+    <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">modes</span><span class="o">.</span><span class="n">ECB</span><span class="p">())</span>
+    <span class="n">encryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">encryptor</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">padded_data</span><span class="p">)</span> <span class="o">+</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">modes</span><span class="o">.</span><span class="n">ECB</span><span class="p">())</span>
+    <span class="n">decryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decryptor</span><span class="p">()</span>
+    <span class="n">padded_plaintext</span> <span class="o">=</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span> <span class="o">+</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+    
+    <span class="c1"># Remove PKCS7 padding</span>
+    <span class="n">unpadder</span> <span class="o">=</span> <span class="n">PKCS7</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">unpadder</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">unpadder</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">padded_plaintext</span><span class="p">)</span> <span class="o">+</span> <span class="n">unpadder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mix_ciphers</span><span class="p">(</span><span class="n">ct1</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">ct2</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ct1</span><span class="p">[:</span><span class="mi">16</span><span class="o">*</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="n">ct2</span><span class="p">[</span><span class="mi">16</span><span class="o">*</span><span class="mi">6</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">):</span>
+    <span class="n">m1_plain</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+
+    <span class="n">m2_plain</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+
+    <span class="n">key</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="n">m1_cipher</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">m1_plain</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="n">m2_cipher</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">m2_plain</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+    <span class="n">mixed</span> <span class="o">=</span> <span class="n">mix_ciphers</span><span class="p">(</span><span class="n">m1_cipher</span><span class="p">,</span> <span class="n">m2_cipher</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Key: </span><span class="si">{</span><span class="n">key</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ciphertext 1: </span><span class="si">{</span><span class="n">m1_cipher</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ciphertext 2: </span><span class="si">{</span><span class="n">m2_cipher</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created ciphertext: </span><span class="si">{</span><span class="n">mixed</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created message:</span><span class="se">\n</span><span class="si">{</span><span class="n">decrypt</span><span class="p">(</span><span class="n">mixed</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">message1</span> <span class="o">=</span> <span class="s2">&quot;Meet me today at the church at 1130.&quot;</span>
+    <span class="n">message2</span> <span class="o">=</span> <span class="s2">&quot;Meet me today at the market at 1530.&quot;</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">message1</span><span class="p">,</span><span class="n">message2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: e20055f8b3b0cb2f40a362091ddc2366
+Ciphertext 1: 5b0baaba22a2fd5494a0ae7a686f8b7de8a83c5b6f101e2b0208c58b1ffb26aebb9f4c07f4d0cc01bf67223154537744
+Ciphertext 2: 5b0baaba22a2fd5494a0ae7a686f8b7da1b06ddf3f69340a8ccfea23232031ea6dfb67b4e256c009024ea7779e3f12e9
+Created ciphertext: 5b0baaba22a2fd5494a0ae7a686f8b7de8a83c5b6f101e2b0208c58b1ffb26aebb9f4c07f4d0cc01bf67223154537744
+Created message:
+Meet me today at the church at 1130.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,20 +535,20 @@ For each program you are requested to implement, use the provided python script 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="Basic%20functionality.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to HY458 Assignments book</p>
+        <p class="prev-next-title">Basic functionality</p>
       </div>
     </a>
     <a class="right-next"
-       href="Caesar%20Cipher.html"
+       href="ECB%20vs%20CBC%3AConfidentiality%20issues.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Caesar Cipher</p>
+        <p class="prev-next-title">ECB vs CBC: Confidentiality issues</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
