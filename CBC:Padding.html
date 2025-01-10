@@ -404,7 +404,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -420,6 +422,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -431,6 +441,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cbc-padding">
 <h1>CBC: Padding<a class="headerlink" href="#cbc-padding" title="Link to this heading">#</a></h1>
+<section id="classic-crypto-fall-2022-2023">
+<h2>Classic Crypto (FALL 2022-2023)<a class="headerlink" href="#classic-crypto-fall-2022-2023" title="Link to this heading">#</a></h2>
 <p>Create a Python program that will be able to encrypt and decrypt the contents of any given file using AES-CBC with key sizes of 128, 192 or 256 bits.</p>
 <p>The key and IV to be used should be given as inputs through separate files. In case of an invalid format or invalid length for the key or IV, an appropriate message should be printed to the user.</p>
 <p>For this exercise you should use PKCS7 padding: Cryptography - Symmetric Padding</p>
@@ -478,12 +490,12 @@
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-e&quot;</span><span class="p">,</span> <span class="s2">&quot;--encrypt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File to be encrypted&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+        <span class="s2">&quot;-e&quot;</span><span class="p">,</span> <span class="s2">&quot;--encrypt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Msg to be encrypted&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--decrypt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File to be decrypted&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+        <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--decrypt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Msg to be decrypted&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-k&quot;</span><span class="p">,</span> <span class="s2">&quot;--key&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File containing the key&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--iv&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File containing the IV&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-k&quot;</span><span class="p">,</span> <span class="s2">&quot;--key&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot; the key&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--iv&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the IV&quot;</span><span class="p">,</span>
                         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The output file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">))</span>
@@ -491,7 +503,7 @@
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Key file must be provided&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Key must be provided&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
@@ -501,7 +513,7 @@
             <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">iv</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IV file must be provided&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IV must be provided&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">iv</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">iv</span><span class="p">)</span>
@@ -535,56 +547,15 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;-e&quot;</span><span class="p">,</span>  <span class="s2">&quot;AES is based on a design principle known as a substitution-permutation network, and is efficient in both software and hardware. Unlike its predecessor DES, AES does not use a Feistel network. AES is a variant of Rijndael, with a fixed block size of 128 bits, and a key size of 128, 192, or 256 bits. By contrast, Rijndael per se is specified with block and key sizes that may be any multiple of 32 bits, with a minimum of 128 and a maximum of 256 bits. Most AES calculations are done in a particular finite field.&quot;</span><span class="p">,</span>
             <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;3f9f9ca5114ad204447e6217512803775f992bff0c4751524842e8b40c0eae2b677994ac291d3baaf76665eff2e95ae5361ea168113c46f7f685ae2f716dec51646005d73e033ef2bf4edadfe231b44c95963c9704d8859ceec60a3ca6d0fbe10e4f52d0889c98ab6c95ee91f027af87f5eede40ce291642ee5210be6b8e50940a03f0916143cb2cfec3a95678f8eb3c362f39fd8173c203433f8d2416b9865f3960045b1737dee204d8d98d222c802fb5d932a469f80a96bfd180c8c147a8af73c6b9103ad4c54b262770f6804524eaa0ed4ce50140dfc6c36ac727a5cc3805115173013c8cb0c5dfcc20906b1c0138a037331ac5c233fba713ed52d3eb0910f8d4344e2ed798dfe3121e162492e6cfa83eda22396b81fe9ba2839333bee6b0f6c5208ab6405e3cba3663de227368ec84ebd997473e98aeca7a69d96340be170ed50e7e6868cfe44aa99c62e3bca856543fb4df6a0646e980bd81f860e6fecf9574a3449d19a0df2b6febbfeb3c9ac6973c7c8792516c11d21b0b9b12b22e2178ea4022803d0c65a1e9f887d66eb7d9cb9a7abf9c13267ab902da4f05935270b1a628687eea38ecbfe6a503418ada1fddc411108b0186bdd64e0adb5dc25069814c9bd37a9e90b2634e60077458ca7002846e8d2217dac2c8699fdcc451a2aa6d17217213759ee0f52b52d856105421be06873c4581e653b2fe288020cd55e5574c2e3dc2f37f41a3d4f4e3b1a7f10a&quot;</span><span class="p">,</span>
             <span class="s2">&quot;-k&quot;</span><span class="p">,</span> <span class="s2">&quot;ecb902004aa569070189aabcacf34effecbb02004aa569073989a00cacf34eff&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;--iv&quot;</span><span class="p">,</span> <span class="s2">&quot;9a090a4fa5692015689aab07acf34e2c&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;InputFiles/Q4/dec.txt&quot;</span>
+            <span class="s2">&quot;--iv&quot;</span><span class="p">,</span> <span class="s2">&quot;9a090a4fa5692015689aab07acf34e2c&quot;</span>
         <span class="p">]</span>
 
 <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------------Plaintext--------------------------------------&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;InputFiles/Q4/plaintext.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------------Ciphertext--------------------------------------&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;InputFiles/Q4/ciphertext.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------------Key--------------------------------------&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;InputFiles/Q4/key.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------------IV--------------------------------------&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;InputFiles/Q4/iv.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------------------OutPut FIles--------------------------------------&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;InputFiles/Q4/dec.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------Plaintext--------------------------------------
-AES is based on a design principle known as a substitution-permutation network, and is efficient in both software and hardware. 
-Unlike its predecessor DES, AES does not use a Feistel network. 
-AES is a variant of Rijndael, with a fixed block size of 128 bits, and a key size of 128, 192, or 256 bits. 
-By contrast, Rijndael per se is specified with block and key sizes that may be any multiple of 32 bits, with a minimum of 128 and a maximum of 256 bits. 
-Most AES calculations are done in a particular finite field.
-----------------------------------------Ciphertext--------------------------------------
-3f9f9ca5114ad204447e6217512803775f992bff0c4751524842e8b40c0eae2b677994ac291d3baaf76665eff2e95ae5361ea168113c46f7f685ae2f716dec51646005d73e033ef2bf4edadfe231b44c95963c9704d8859ceec60a3ca6d0fbe10e4f52d0889c98ab6c95ee91f027af87f5eede40ce291642ee5210be6b8e50940a03f0916143cb2cfec3a95678f8eb3c362f39fd8173c203433f8d2416b9865f3960045b1737dee204d8d98d222c802fb5d932a469f80a96bfd180c8c147a8af73c6b9103ad4c54b262770f6804524eaa0ed4ce50140dfc6c36ac727a5cc3805115173013c8cb0c5dfcc20906b1c0138a037331ac5c233fba713ed52d3eb0910f8d4344e2ed798dfe3121e162492e6cfa83eda22396b81fe9ba2839333bee6b0f6c5208ab6405e3cba3663de227368ec84ebd997473e98aeca7a69d96340be170ed50e7e6868cfe44aa99c62e3bca856543fb4df6a0646e980bd81f860e6fecf9574a3449d19a0df2b6febbfeb3c9ac6973c7c8792516c11d21b0b9b12b22e2178ea4022803d0c65a1e9f887d66eb7d9cb9a7abf9c13267ab902da4f05935270b1a628687eea38ecbfe6a503418ada1fddc411108b0186bdd64e0adb5dc25069814c9bd37a9e90b2634e60077458ca7002846e8d2217dac2c8699fdcc451a2aa6d17217213759ee0f52b52d856105421be06873c4581e653b2fe288020cd55e5574c2e3dc2f37f41a3d4f4e3b1a7f10a
-----------------------------------------Key--------------------------------------
-ecb902004aa569070189aabcacf34effecbb02004aa569073989a00cacf34eff
-----------------------------------------IV--------------------------------------
-9a090a4fa5692015689aab07acf34e2c
-----------------------------------------OutPut FIles--------------------------------------
-Encrypted:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypted:
 3f9f9ca5114ad204447e6217512803775f992bff0c4751524842e8b40c0eae2b677994ac291d3baaf76665eff2e95ae5361ea168113c46f7f685ae2f716dec51646005d73e033ef2bf4edadfe231b44c95963c9704d8859ceec60a3ca6d0fbe10e4f52d0889c98ab6c95ee91f027af87f5eede40ce291642ee5210be6b8e509469a07ca95fffa778f9f3402e5ae8d761ac77466d501563af98bd1dd1e247b95cfc3ead81b35384f2b39252afa756e2f3dc9ad8f05500bb27640a3e9d5afb9eb5d936f1fef557c2c2c22f03f6e7bc66d56bf6abb03e38a8f653ce242e5854afe3b4fcdc0827e2445396e2cc19377d4bf5b150256ef56deb39462ddacfc3b24971fd8cf9374af80e0f957156317903ea8767af39e692d85a2d1c7f251883ee11680bd4503cebc360eebd8a028f541fa4cc22db29941697b662e9c63a538b5c56af3627d1bab1618930b89bfdc03e6472925cfeeffc83d0c918bfdd31d191b267aee7b439912d6d2d6215efe535b1cf655a4e5c6ccee8d9300179295c3f560b6c0e3c4b19ac5f1f46315040f2c9d5dd45850ad294203ebdb16ac21e9fbec31bafb062579027e52ae20790202bf11e6dba9226dc643d0188d0358701246cc759b6998dc9cb3e4a61b746b3a4f01aca98f4269d125445404672703adcb7efb601e8c1a8b40b5ca77be1204fc266b9c2357acff3e80d2cdc4eedbc83aba9a7d1bf80103077d56179d7e758f3b42c2b71eb10ae
 Decrypted:
 AES is based on a design principle known as a substitution-permutation network, and is efficient in both software and hardware. 
@@ -596,6 +567,7 @@ Most AES calculations are done in a particular finite field.
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -652,6 +624,22 @@ Most AES calculations are done in a particular finite field.
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

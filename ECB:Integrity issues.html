@@ -404,7 +404,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -420,6 +422,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -431,6 +441,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ecb-integrity-issues">
 <h1>ECB:Integrity issues<a class="headerlink" href="#ecb-integrity-issues" title="Link to this heading">#</a></h1>
+<section id="classic-crypto-fall-2022-2023">
+<h2>Classic Crypto (FALL 2022-2023)<a class="headerlink" href="#classic-crypto-fall-2022-2023" title="Link to this heading">#</a></h2>
 <p>Create a Python program that encrypts the messages in “message1.txt” and “message2.txt” using AES-128-ECB, using a key of your choosing.</p>
 <p>The aforementioned text files portray messages exchanged between two parties for the setup of a meeting.</p>
 <p>By concatenating a part of the ciphertext created from the first message and a part of the ciphertext created from the second message, create a third ciphertext which when decrypted shows that a meeting will take place at a date and time combination not shown in the first two messages.
@@ -500,16 +512,17 @@ Print the resulting plaintext as well as the ciphertexts for message1.txt, messa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: f34c4a23474f924a8b9c88f360f0ce92
-Ciphertext 1: 8a9c2350fad0daa7e77045bf58d25a7da7d69d7b69f2b7cfed82821967658b1533b0e81d47c9d6adcfa2b63dc2c41f2c
-Ciphertext 2: 8a9c2350fad0daa7e77045bf58d25a7d6ef28977476f917f3ad175d56d763cfa8c238f14707053d7b5b77f30cdac2cb9
-Created ciphertext: 8a9c2350fad0daa7e77045bf58d25a7da7d69d7b69f2b7cfed82821967658b1533b0e81d47c9d6adcfa2b63dc2c41f2c
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: aab86566252824c01622e748514d5ae3
+Ciphertext 1: 85ccd296ccc711d3a374bbfb684b0ff6ed331674392aab471d0578269a05f42c020303d0477fee8c7c3e3f8db0a7e4b5
+Ciphertext 2: 85ccd296ccc711d3a374bbfb684b0ff65a4593767b5ebe8587440223719565d4ea0cc0e9dff8692a65ac2d12fd402d2f
+Created ciphertext: 85ccd296ccc711d3a374bbfb684b0ff6ed331674392aab471d0578269a05f42c020303d0477fee8c7c3e3f8db0a7e4b5
 Created message:
 Meet me today at the church at 1130.
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -566,6 +579,22 @@ Meet me today at the church at 1130.
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

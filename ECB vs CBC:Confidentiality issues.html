@@ -404,7 +404,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -420,6 +422,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -431,6 +441,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ecb-vs-cbc-confidentiality-issues">
 <h1>ECB vs CBC: Confidentiality issues<a class="headerlink" href="#ecb-vs-cbc-confidentiality-issues" title="Link to this heading">#</a></h1>
+<section id="classic-crypto-fall-2022-2023">
+<h2>Classic Crypto (FALL 2022-2023)<a class="headerlink" href="#classic-crypto-fall-2022-2023" title="Link to this heading">#</a></h2>
 <p>Create a Python program that reads in the image file “tux.bmp” and encrypts everything except the first 54 bytes, using AES-128-ECB.</p>
 <p>The reason we’re not encrypting the first 54 bytes is because this program is going to encrypt the contents of a bitmap file (BMP) and the header is 54 bytes in length.</p>
 <p>Write out the concatenation of the first 54 bytes and the encrypted body in an output image file.</p>
@@ -492,14 +504,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: 54ef9a0215ea4bcf26d5b3ce7670af51
-IV: 8b875526e6e9a7298d934559c961b86a
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: c5a39e04680fd76c54a8858e6a35be86
+IV: b05aedffbe90a57c1ba135dec6edc7ab
 </pre></div>
 </div>
 </div>
 </div>
 <p><img alt="Processed Image" src="_images/tux-ECB.bmp" /></p>
 <p><img alt="Processed Image" src="_images/tux-CBC.bmp" /></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -556,6 +569,22 @@ IV: 8b875526e6e9a7298d934559c961b86a
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-crypto-fall-2022-2023">Classic Crypto (FALL 2022-2023)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
