@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setup &#8212; Classical Crypto</title>
+    <title>Hashing in Proof-of-Work schemes &#8212; Classical Crypto</title>
   
   
   
@@ -60,11 +60,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Setup';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Hashing in Proof-of-Work schemes';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Caesar Cipher" href="Caesar%20Cipher.html" />
-    <link rel="prev" title="Welcome to HY458 Assignments book" href="intro.html" />
+    <link rel="prev" title="Brute-forcing hashed passwords" href="Brute-forcing%20hashed%20passwords.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -169,8 +168,8 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Setup.html">Setup</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Cryptography(FALL 2022)</span></p>
 <ul class="nav bd-sidenav">
@@ -194,7 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Time%20based%20randomness.html">Time based randomness</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Asymmetric Encryption &amp; Hashing(FALL 2022)</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Plain%20RSA%20implementation.html">Plain RSA implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="RSA%20deterministic%20outputs%3ABrute-forcing%20RSA.html">RSA deterministic outputs: Brute-forcing RSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chosen%20ciphertext%20attack.html">Chosen ciphertext attack</a></li>
@@ -203,7 +202,7 @@
 <li class="toctree-l1"><a class="reference internal" href="RSA%20benchmark.html">RSA benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Hash%20algorithm%20avalanche%20property.html">Hash algorithm avalanche property</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Brute-forcing%20hashed%20passwords.html">Brute-forcing hashed passwords</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hashing%20in%20Proof-of-Work%20schemes.html">Hashing in Proof-of-Work schemes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hashing in Proof-of-Work schemes</a></li>
 </ul>
 
     </div>
@@ -311,7 +310,7 @@
       
       
       
-      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FSetup.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FHashing in Proof-of-Work schemes.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,7 +340,7 @@
       
       
       
-      <li><a href="_sources/Setup.ipynb" target="_blank"
+      <li><a href="_sources/Hashing in Proof-of-Work schemes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -415,7 +414,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setup</h1>
+    <h1>Hashing in Proof-of-Work schemes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -429,29 +428,102 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
-<p>For this and future assignments you will use Python 3 with Linux, Windows or a Unix based
-machine. We will walk you through installing Python 3 in Ubuntu Linnux in this section.
-Installation will be slightly different for other versions of Linux or Unix and may be considerably
-different for Windows.
-If you do not want to mess around with your system Python environment, we suggest creating a
-Python virtual environment using the venv module. This will configure a selected directory with a
-Python interpreter and associated modules. Any modules you install are only locally installed.</p>
-<p>First, we need to install Python 3, Pip, and the venv module:</p>
-<p><font color='orange'> sudo apt install python3 python3-venv python3-pip</font></p>
-<p>Next, we create a project directory:</p>
-<p><font color='orange'>   mkdir hy458</font></p>
-<p><font color='orange'>    cd hy458</font></p>
-<p>Next, we use venv to set up the environment in an env directory:</p>
-<p><font color='orange'>    python3 -m venv env</font></p>
-<p>This will set up the interpreter and modules within the path. Once the installation is complete,
-the environment can be used at any time by the following command:</p>
-<p><font color='orange'>    source env/bin/activate</font></p>
-<p>You should now see a prefix to your shell prompt with the name of your environment.
-When working on the assignments, remember to activate your Python virtual environment first if
-you don’t want Python modules to be installed system-wide.
-For each program you are requested to implement, use the provided python script template.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="hashing-in-proof-of-work-schemes">
+<h1>Hashing in Proof-of-Work schemes<a class="headerlink" href="#hashing-in-proof-of-work-schemes" title="Link to this heading">#</a></h1>
+<p>Write a Python program that feeds a counter into SHA-256, taking the output hash and converting it to an integer.</p>
+<p>Have the program repeat until it finds a hash that is less than a target number. The target number should be 2N, where N starts at 255.</p>
+<p>Every time that we find a hash less than the target number, you should decrease N by 1, reset the counter to 0 and print the time it took to find that hash.</p>
+<p>Explain how the above procedures relate to Bitcoin’s mining difficulty</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">hashes</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">timeit</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">255</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">bytes_to_int</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">int_to_bytes</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">num_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="n">num_int</span><span class="p">,</span> <span class="p">(</span><span class="n">num_int</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span><span class="o">//</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">hash_lookup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">N</span>
+
+    <span class="n">counter</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span>
+
+    <span class="n">hasher</span> <span class="o">=</span> <span class="n">hashes</span><span class="o">.</span><span class="n">Hash</span><span class="p">(</span><span class="n">hashes</span><span class="o">.</span><span class="n">SHA256</span><span class="p">())</span>
+    <span class="n">hasher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">hasher</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+
+    <span class="n">target</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">N</span>
+
+    <span class="k">while</span> <span class="n">bytes_to_int</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+        <span class="n">hasher</span> <span class="o">=</span> <span class="n">hashes</span><span class="o">.</span><span class="n">Hash</span><span class="p">(</span><span class="n">hashes</span><span class="o">.</span><span class="n">SHA256</span><span class="p">())</span>
+        <span class="n">hasher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">hasher</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+    <span class="n">N</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span>
+
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">hash_lookup</span><span class="p">(),</span> <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>255 0.0006384330008586403
+254 2.7694000891642645e-05
+253 2.1807001758133993e-05
+252 0.00011358099800418131
+251 0.00010972399832098745
+250 0.00011029400047846138
+249 0.0006633140001213178
+248 0.0011109280021628365
+247 0.00488855000003241
+246 0.005668519999744603
+245 0.005545426000026055
+244 0.009367669001221657
+243 0.009665171000960981
+242 0.025408691002667183
+241 0.052556015998561634
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>240 0.2864962519997789
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>239 0.3917252959981852
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>238 0.39200389399775304
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>237 0.39350616299998364
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>236 0.3954323680009111
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>235 4.329494017001707
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>234 11.280870865000907
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>233 11.294975928001804
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">lower</span> <span class="n">N</span> <span class="ow">is</span><span class="p">,</span> <span class="n">the</span> <span class="n">longer</span> <span class="n">it</span> <span class="n">takes</span> <span class="n">to</span> <span class="n">find</span> <span class="n">a</span> <span class="nb">hash</span> <span class="n">less</span> <span class="n">than</span> <span class="n">the</span> <span class="n">target</span><span class="o">.</span> <span class="n">Bitcoin</span> <span class="ow">is</span> <span class="n">mined</span> <span class="n">through</span> <span class="n">a</span> <span class="n">procedure</span> <span class="n">similar</span> <span class="n">to</span> <span class="n">the</span> <span class="n">one</span> <span class="n">implemented</span><span class="o">.</span> <span class="n">It</span> <span class="ow">is</span> <span class="n">really</span> <span class="n">simple</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">the</span> <span class="nb">hash</span> <span class="n">found</span> <span class="ow">is</span> <span class="n">suitable</span> <span class="n">but</span> <span class="n">very</span> <span class="n">hard</span> <span class="n">to</span> <span class="n">find</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">place</span><span class="o">.</span> <span class="n">This</span> <span class="n">makes</span> <span class="n">mining</span> <span class="n">very</span> <span class="n">hard</span><span class="o">.</span> <span class="n">When</span> <span class="n">paying</span><span class="p">,</span> <span class="n">this</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">prove</span> <span class="n">that</span> <span class="n">the</span> <span class="n">miner</span> <span class="n">has</span> <span class="n">put</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">work</span> <span class="n">need</span> <span class="n">to</span> <span class="n">mine</span> <span class="n">Bitcoins</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -485,22 +557,13 @@ For each program you are requested to implement, use the provided python script 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="Brute-forcing%20hashed%20passwords.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to HY458 Assignments book</p>
+        <p class="prev-next-title">Brute-forcing hashed passwords</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="Caesar%20Cipher.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Caesar Cipher</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

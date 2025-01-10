@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CTR: Reuse key and nonce &#8212; Classical Crypto</title>
+    <title>RSA deterministic outputs: Brute-forcing RSA &#8212; Classical Crypto</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'CTR:Reuse keys and nonce';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'RSA deterministic outputs:Brute-forcing RSA';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="CBC vs CTR: Changes in ciphertext" href="CBC%20vs%20CTR%3AChanges%20in%20ciphertext.html" />
-    <link rel="prev" title="CBC: Padding" href="CBC%3APadding.html" />
+    <link rel="next" title="Chosen ciphertext attack" href="Chosen%20ciphertext%20attack.html" />
+    <link rel="prev" title="Plain RSA implementation" href="Plain%20RSA%20implementation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -183,20 +183,20 @@
 <li class="toctree-l1"><a class="reference internal" href="Polybius%20Square.html">Polybius Square(variant)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Symmetric Encryption(FALL 2022)</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Basic%20functionality.html">Basic functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ECB%3AIntegrity%20issues.html">ECB:Integrity issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ECB%20vs%20CBC%3AConfidentiality%20issues.html">ECB vs CBC: Confidentiality issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CBC%3APadding.html">CBC: Padding</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">CTR: Reuse key and nonce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTR%3AReuse%20keys%20and%20nonce.html">CTR: Reuse key and nonce</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CBC%20vs%20CTR%3AChanges%20in%20ciphertext.html">CBC vs CTR: Changes in ciphertext</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CTR%3AIntegrity%20issues.html">CTR: Integrity issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time%20based%20randomness.html">Time based randomness</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Asymmetric Encryption &amp; Hashing(FALL 2022)</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Plain%20RSA%20implementation.html">Plain RSA implementation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RSA%20deterministic%20outputs%3ABrute-forcing%20RSA.html">RSA deterministic outputs: Brute-forcing RSA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">RSA deterministic outputs: Brute-forcing RSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chosen%20ciphertext%20attack.html">Chosen ciphertext attack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Common%20modulus%20attack.html">Common modulus attack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="RSA%20with%20padding.html">RSA with padding</a></li>
@@ -311,7 +311,7 @@
       
       
       
-      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FCTR:Reuse keys and nonce.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ArtemiStam/HY458-Assignemnts-JupyterBook/issues/new?title=Issue%20on%20page%20%2FRSA deterministic outputs:Brute-forcing RSA.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,7 +341,7 @@
       
       
       
-      <li><a href="_sources/CTR:Reuse keys and nonce.ipynb" target="_blank"
+      <li><a href="_sources/RSA deterministic outputs:Brute-forcing RSA.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -415,7 +415,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>CTR: Reuse key and nonce</h1>
+    <h1>RSA deterministic outputs: Brute-forcing RSA</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -429,75 +429,140 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ctr-reuse-key-and-nonce">
-<h1>CTR: Reuse key and nonce<a class="headerlink" href="#ctr-reuse-key-and-nonce" title="Link to this heading">#</a></h1>
-<p>Create a Python program that takes as inputs two ciphertexts, encrypted with the same key, IV combination using AES-256-CTR and the plaintext for one of those ciphertexts.
-Your program should be able to find and print on the console all or part of the other plaintext, using the two ciphertexts and the known plaintext for one of those ciphertexts.</p>
-<p>Your program should support the following arguments:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>● -ca ciphertext file: Ciphertext file A
-● -cb ciphertext file: Ciphertext file B
-● -pa plaintext file: Plaintext file containing the decrypted content of ciphertext file A
-</pre></div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="rsa-deterministic-outputs-brute-forcing-rsa">
+<h1>RSA deterministic outputs: Brute-forcing RSA<a class="headerlink" href="#rsa-deterministic-outputs-brute-forcing-rsa" title="Link to this heading">#</a></h1>
+<p>Create a Python program that uses the RSA implementation you created in exercise 1 to brute force an RSA-encrypted word. The program should take a public key, the RSA encrypted ciphertext and the length of the word as the inputs.</p>
+<p>By running some experiments, measure the average time it takes to brute force an all lowercase four-letter word vs. an all lowercase five-letter word. How many times longer does it take and why?</p>
+<p>For how long would it take to try all possible all lowercase six-letter words?</p>
+<p>Modify your brute-force program by adding an option to pass a dictionary as input for trying arbitrary English words.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gmpy2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric.rsa</span><span class="w"> </span><span class="kn">import</span> <span class="n">RSAPublicKey</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.serialization</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pem_public_key</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">xor</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">char_a</span> <span class="o">^</span> <span class="n">char_b</span> <span class="k">for</span> <span class="n">char_a</span><span class="p">,</span> <span class="n">char_b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bytes_to_int</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">int_to_bytes</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">num_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="n">num_int</span><span class="p">,</span> <span class="p">(</span><span class="n">num_int</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span><span class="o">//</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">cryptanalysis</span><span class="p">(</span><span class="n">pa</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ca</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cb</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">pa_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">pa</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pa</span><span class="p">),</span> <span class="mi">16</span><span class="p">)]</span>
-    <span class="n">ca_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">ca</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">32</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ca</span><span class="p">),</span> <span class="mi">32</span><span class="p">)]</span>
-    <span class="n">cb_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">cb</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">32</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cb</span><span class="p">),</span> <span class="mi">32</span><span class="p">)]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">encrypt</span><span class="p">(</span><span class="n">plain</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">block_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">block_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">block_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span><span class="o">//</span><span class="mi">8</span>
 
-    <span class="n">generated_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">xor</span><span class="p">(</span><span class="n">a_block</span><span class="p">,</span> <span class="n">b_block</span><span class="p">)</span>
-                      <span class="k">for</span> <span class="n">a_block</span><span class="p">,</span> <span class="n">b_block</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pa_blocks</span><span class="p">,</span> <span class="n">ca_blocks</span><span class="p">)]</span>
+    <span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">block_size</span><span class="p">])</span>
+              <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plain</span><span class="p">),</span> <span class="n">block_size</span><span class="p">)]</span>
 
-    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">xor</span><span class="p">(</span><span class="n">cb_block</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="k">for</span> <span class="n">cb_block</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cb_blocks</span><span class="p">,</span> <span class="n">generated_keys</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">int_to_bytes</span><span class="p">(</span><span class="n">gmpy2</span><span class="o">.</span><span class="n">powmod</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">])</span>
 
+<span class="k">def</span><span class="w"> </span><span class="nf">bruteforce</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">RSAPublicKey</span><span class="p">,</span> <span class="n">cipher</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">search_space</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
+    <span class="n">public_numbers</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">public_numbers</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">word_tuple</span> <span class="ow">in</span> <span class="n">search_space</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_tuple</span><span class="p">)</span>
+        <span class="n">attempt</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span>
+                          <span class="n">public_numbers</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">public_numbers</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">cipher</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">word</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">):</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-ca&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Ciphertext file A&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--ciphertext&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Encrypted word&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-cb&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Ciphertext file B&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="s2">&quot;-l&quot;</span><span class="p">,</span> <span class="s2">&quot;--length&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Length of the word&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-pa&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Plaintext file A&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="s2">&quot;-pub&quot;</span><span class="p">,</span> <span class="s2">&quot;--public-key&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File containing the public key&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--dictionary&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File containing the dictionary for the attack&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">))</span>
 
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
 
-    <span class="n">ca</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">ca</span>
-    <span class="n">pa</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pa</span>
-    <span class="n">cb</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">cb</span>
+    <span class="n">public_key</span> <span class="o">=</span> <span class="n">load_pem_public_key</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">public_key</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
 
-    <span class="n">pb</span> <span class="o">=</span> <span class="n">cryptanalysis</span><span class="p">(</span><span class="n">pa</span><span class="p">,</span> <span class="n">ca</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">pb</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">dictionary</span><span class="p">:</span>
+        <span class="n">search_space</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dictionary</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
+            <span class="n">search_space</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">search_space</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="n">args</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">search_space</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="s2">&quot;-l/--length is required  when -d/--dictionary is not provided&quot;</span><span class="p">)</span>
+
+    <span class="n">plain</span> <span class="o">=</span> <span class="n">bruteforce</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">ciphertext</span><span class="p">),</span> <span class="n">search_space</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plain</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Word not found&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;-ca&quot;</span><span class="p">,</span>  <span class="s2">&quot;f948cbbacdd1b7526ad3a025727353defce955ac90b81c4d7092900b38805d1b89af9dbec54617102710b9625a3bdaecbb522950b16a7da2ac072c03edeedb6904f60a1c004eb60a824469e0fbf5d80198b0126abdc3c43577cc7de7d21e117160e9d7645946ad1f719cf49f767f8cadf321c0a92314e52d0407401bc6e6bfac817c&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;-cb&quot;</span><span class="p">,</span> <span class="s2">&quot;ff4fdbb68c92ed033484e969267a428af2e452a690af060e7d9897583f81455a9ab1dfa6c4505f162a40b0735c7ad8f4e8136855bc6270baf8453713a4eedc720cba5e35306eb61c95532caee7e89c16d0bf1b7fb6c9812d388d6afac3151f7060f5dc275f5ba90e28cfe58935728fa2f96fcca07311ee601501515ad1e3b1b1813b4615e1daac892bdee346db13f4501d1447e54c1232a5bf98af280f1dd1cbe17db79ecb858e997fbb5f0b0c&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;-pa&quot;</span><span class="p">,</span> <span class="s2">&quot;Until 2009, the only successful published attacks against the full AES were side-channel attacks on some specific implementations.&quot;</span>
-        <span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;afb7c2810bc4687588ff93559b4b89d17c6c1b33e421c06d11c8675da4412adaf845de8d94366630f9804df799c1ff5bdc9619261b7448e1638461cfa4d459e21cbb898c1ffbfe599622b9bc5a97496759f6e8e20ed3380600239ecdb1537c48ad735630e816512faecc5e0f126e8ea583b06fa2dd989569c10783674fe0bb486731477247cef855696df351cea93d60718f610bb0473c39c2c9baf06751b6bcf8675ad151d37807aedddd1fae65990729a47da505b284a0f329d1dd4ae8db9b4d9a5c6204ae1c6b1a2c3987645242ba1c4b52a9cf27e8c18e7f00275c9f0577af959869464ebfaa4d0b029059cb94eca3f8d559598a83d5207f5483cae8bfb4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;-pub&quot;</span><span class="p">,</span> <span class="s2">&quot;InputFiles/RSA_powmod_without_padding/public_key.pem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;-d&quot;</span> <span class="p">,</span> <span class="s2">&quot;dictionary_1000.txt&quot;</span>
+    
+
+<span class="p">]</span>
 <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="c1">#&quot;-d&quot; , &quot;dictionary_1000.txt&quot;</span>
+    <span class="c1">#&quot;-l&quot; , 5</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Side-channel attacks do not attack the cipher as a black box, and thus are not related to cipher security as defined in the classi
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Word not found
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;InputFiles/RSA_powmod_without_padding/public_key.pem&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pu_key_file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pu_key_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyvcRJzJCzMsRpU5IDju0
+JzA4AX0f48TtmaM/Q17RPz0w1pD6FparGDya63+ktHsTvSSQMtTJYQBRPkN9dzeT
+4IlwOjliwNu7K6nc/8nPrLtHMbJfw0ldKjqkzppEyzraiVdLH4oAwU1DH0YxP+Tz
+9naWyOm3npKxLdsACUCnYImclulAHBdWrUXbJovbBaaZNmMOWSDsEUyam1wwYFcb
+ePBY1Qoqi07kBgx4CJ1zkWBaSp17qnNp2wrAbAA7f/OKbXCPB8N9hGVRAur8YQ7b
+AxJTscHIF5ED1MwXeQ88adYTeI3grB24sl97o48+VTQ2yrRTMIlGjL3CSz8WCZvr
+FwIDAQAB
+-----END PUBLIC KEY-----
 </pre></div>
 </div>
 </div>
@@ -535,20 +600,20 @@ Your program should be able to find and print on the console all or part of the 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="CBC%3APadding.html"
+       href="Plain%20RSA%20implementation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">CBC: Padding</p>
+        <p class="prev-next-title">Plain RSA implementation</p>
       </div>
     </a>
     <a class="right-next"
-       href="CBC%20vs%20CTR%3AChanges%20in%20ciphertext.html"
+       href="Chosen%20ciphertext%20attack.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">CBC vs CTR: Changes in ciphertext</p>
+        <p class="prev-next-title">Chosen ciphertext attack</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

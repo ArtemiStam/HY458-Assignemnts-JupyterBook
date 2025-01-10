@@ -196,6 +196,14 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Asymmetric Encryption &amp; Hashing(FALL 2022)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Plain%20RSA%20implementation.html">Plain RSA implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RSA%20deterministic%20outputs%3ABrute-forcing%20RSA.html">RSA deterministic outputs: Brute-forcing RSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chosen%20ciphertext%20attack.html">Chosen ciphertext attack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Common%20modulus%20attack.html">Common modulus attack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RSA%20with%20padding.html">RSA with padding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RSA%20benchmark.html">RSA benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hash%20algorithm%20avalanche%20property.html">Hash algorithm avalanche property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brute-forcing%20hashed%20passwords.html">Brute-forcing hashed passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hashing%20in%20Proof-of-Work%20schemes.html">Hashing in Proof-of-Work schemes</a></li>
 </ul>
 
     </div>
@@ -475,13 +483,13 @@ key = bits.to_bytes(16, &#39;big&#39;)
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--ciphertext&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Ciphertext file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--ciphertext&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Ciphertext (as a hexadecimal string)&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--max&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Max UNIX time&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--min&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Min UNIX time&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
 
-    <span class="n">cipher</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ciphertext</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">cipher</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ciphertext</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ciphertext:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">cipher</span><span class="p">))</span>
     <span class="n">max_attempt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
 
@@ -518,8 +526,8 @@ key = bits.to_bytes(16, &#39;big&#39;)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;&quot;</span><span class="p">,</span> 
-    <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;InputFiles/Q8/ciphertext_unix_time_is_1668478123.txt&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;--max&quot;</span><span class="p">,</span> <span class="s2">&quot;1700000000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;3bfca22088615b4838e1721d1a23a34bdb95e111583129731af3d228d618cefc5bca25f37cd2dcdc275556dc3cdf93b74a2ff5ec59aac5460d86118c2ec17dc2a4588a8609291f81f64f692ab817302629604dd05d652979daa70aa0a891605fdda44dab97d3f7c05e451af5edc6fbb89ac3b9cabe885e1270b64452bd252c2bf2716d5529997038f5e888ad798626214ea845ed731d2ca62c4776c7deac0564&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;--max&quot;</span><span class="p">,</span> <span class="s2">&quot;1738368000&quot;</span><span class="p">,</span>
     <span class="s2">&quot;--min&quot;</span><span class="p">,</span> <span class="s2">&quot;1600000000&quot;</span>
 <span class="p">]</span>
 <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>

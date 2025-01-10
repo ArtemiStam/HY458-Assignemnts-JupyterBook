@@ -198,6 +198,14 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Asymmetric Encryption &amp; Hashing(FALL 2022)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Plain%20RSA%20implementation.html">Plain RSA implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RSA%20deterministic%20outputs%3ABrute-forcing%20RSA.html">RSA deterministic outputs: Brute-forcing RSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chosen%20ciphertext%20attack.html">Chosen ciphertext attack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Common%20modulus%20attack.html">Common modulus attack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RSA%20with%20padding.html">RSA with padding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RSA%20benchmark.html">RSA benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hash%20algorithm%20avalanche%20property.html">Hash algorithm avalanche property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brute-forcing%20hashed%20passwords.html">Brute-forcing hashed passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hashing%20in%20Proof-of-Work%20schemes.html">Hashing in Proof-of-Work schemes</a></li>
 </ul>
 
     </div>
@@ -505,10 +513,10 @@ In the end you should have a ciphertext which when decrypted will acknowledge th
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: cbfb147008d74ec182a6ef18ca87d83f01c49fa449544f6ee2087b9e899af2fa
-Nonce: 7a7aaacf9643eb9133ba88f315ffec36
-Original ciphertext: 9b5f403df5d53c65debd950860d8da2eebdc09cf545db61a4f981d6057d812d9ca177a275b54ad1b7633ddd17e03dec9fddc7196a7a68dfd8bc80a4dfb4eea0c3e171e5ad459952ee0be4d6fe2b4a01cba6c7049ce97df850836fb37ca837f1170dcb92b605708039257b6c164e1e947bb1f015eb14a9d3a
-Generated ciphertext: 9b5f403df5d53c65debd950860d8da2eebdc09cf545db61a4f981d6057d812d9ca177a275b54ad247633ddd17e03dec9fddc7196a7a68dfd8bc80a4dfb4eea0c3e171e5ad459952ee0be4d6fe2b4a01cba6c7049ce97df850836fb37ca837f1170dcb97f2c0b43009c5bbacd64e1e947bb1f015eb14a9d3a
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Key: 746c53499aff3148c50c46975a0de53de913129835903fdcb31cceab0d6f31ac
+Nonce: 36af40bbfc6be28d9aa199b2ba751ef9
+Original ciphertext: bfa38a036f6751168ab5c02239fc47470d5e4fb7f115475f4f87719690bc9fa0d59fde54e8308ae1957312eca114e6ab7053c30dcdb917d3801063023406e69f3151c42bea83bf0bfb3ff97865bdbb511e6221281a796ec992cec1f4517806b6935544bca1f434f8afcfce9c8a2f2213e667093fbc4fbe07
+Generated ciphertext: bfa38a036f6751168ab5c02239fc47470d5e4fb7f115475f4f87719690bc9fa0d59fde54e8308ade957312eca114e6ab7053c30dcdb917d3801063023406e69f3151c42bea83bf0bfb3ff97865bdbb511e6221281a796ec992cec1f4517806b6935544e8eda87ffba1c3c2908a2f2213e667093fbc4fbe07
 Generated plaintext: 
 CreditCardPurchase  Recipient: Elon MusT Buyer: Jeff Bezos Date: 02/04/2020 Amount:$1.000.000  CCNu9.999.999-555-555-555
 </pre></div>
